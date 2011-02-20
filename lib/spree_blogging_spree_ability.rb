@@ -3,6 +3,6 @@ class SpreeBloggingSpreeAbility
 
   def initialize(user)
     can :read, BlogEntry
-    can :index, BlogEntry
+    #can :index, BlogEntry
   end
 end
