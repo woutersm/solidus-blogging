@@ -1,3 +1,8 @@
+<% content_for :head do %>    
+  <%= javascript_include_tag 'news_archive_widget' %>
+  <%= stylesheet_link_tag 'blog' %>
+<% end %>
+
 <div id="blog-container">
 
   <% if !@blog_entries.empty? %>
@@ -11,12 +16,11 @@
   <% else %>
     <p id="no_entries"><%= t('no_blog_entries') %></p>
   <% end %>
-
-  <% content_for :sidebar do %>
-    <div id="blog-sidebar">
-      <%= render :partial => 'news_archive', :object => @news_archive %>
-    </div>
-  <% end %>
-
   <br class="clearfloat" />
-</div>
+</div>  
+
+<% content_for :sidebar do %>
+  <div id="blog-sidebar">
+    <%= render :partial => 'news_archive', :object => @news_archive %>
+  </div>
+<% end %> 

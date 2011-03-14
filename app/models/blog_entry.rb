@@ -5,7 +5,7 @@ class BlogEntry < ActiveRecord::Base
   before_save :create_permalink
   validates_presence_of :title
   default_scope :order => "created_at DESC"    
-  scope :recent, where('published = ?', true).limit(6)
+  scope :recent, limit(5)
 
   has_one :blog_entry_image, :as => :viewable, :dependent => :destroy
 
