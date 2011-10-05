@@ -1,5 +1,5 @@
 require 'spree_core'
-require 'spree_blogging_spree_hooks'
+#require 'spree_blogging_spree_hooks'
 
 module SpreeBloggingSpree
   class Engine < Rails::Engine
