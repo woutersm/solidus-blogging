@@ -11,6 +11,10 @@ module SpreeBloggingSpree
         Rails.env.production? ? require(c) : load(c)
       end 
       
+      Dir.glob(File.join(File.dirname(__FILE__), "../app/overrides/**/*.rb")) do |c|
+        Rails.application.config.cache_classes ? require(c) : load(c)
+      end
+      
       Ability.register_ability(SpreeBloggingSpreeAbility)
     end
     
