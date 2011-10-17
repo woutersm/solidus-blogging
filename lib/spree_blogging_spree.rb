@@ -2,15 +2,17 @@ require 'spree_core'
 #require 'spree_blogging_spree_hooks'
 
 module SpreeBloggingSpree
-  class Engine < Rails::Engine
+  class Engine < Rails::Engine  
+    railtie_name "spree_blogging_spree"
+    
     config.autoload_paths += %W(#{config.root}/lib) 
     
     def self.activate  
       
       Dir.glob(File.join(File.dirname(__FILE__), "../app/**/*_decorator*.rb")) do |c|
-        Rails.env.production? ? require(c) : load(c)
-      end 
-      
+        Rails.application.config.cache_classes ? require(c) : load(c)
+      end
+
       Dir.glob(File.join(File.dirname(__FILE__), "../app/overrides/*.rb")) do |c|
         Rails.application.config.cache_classes ? require(c) : load(c)
       end
