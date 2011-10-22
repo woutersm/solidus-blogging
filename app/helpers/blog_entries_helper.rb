@@ -1,7 +1,7 @@
 module BlogEntriesHelper     
   def post_link_list
        link = Struct.new(:name,:url)
-       SpreeBlogging::BlogEntry.recent.collect { |post| link.new( post.title, entry_permalink(post)) }
+       BlogEntry.recent.collect { |post| link.new( post.title, entry_permalink(post)) }
   end           
   def entry_permalink(e)
      #d = e.created_at.strftime("%m %d, %Y")

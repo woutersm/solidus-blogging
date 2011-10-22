@@ -1,6 +1,5 @@
 require "is_taggable"
 
-module SpreeBlogging
   class BlogEntry < ActiveRecord::Base
   is_taggable :tags
   before_save :create_permalink
@@ -59,4 +58,3 @@ module SpreeBlogging
   end
 
 end 
-end
