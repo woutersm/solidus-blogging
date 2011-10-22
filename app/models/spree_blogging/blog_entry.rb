@@ -1,6 +1,7 @@
 require "is_taggable"
 
-class BlogEntry < ActiveRecord::Base
+module SpreeBlogging
+  class BlogEntry < ActiveRecord::Base
   is_taggable :tags
   before_save :create_permalink
   validates_presence_of :title
@@ -57,4 +58,5 @@ class BlogEntry < ActiveRecord::Base
     errors.add(:body, "can't be blank") if body =~ /^<br>$/
   end
 
+end 
 end

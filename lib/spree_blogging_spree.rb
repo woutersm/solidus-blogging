@@ -3,10 +3,7 @@ require 'spree_core'
 
 module SpreeBloggingSpree
   class Engine < Rails::Engine  
-    railtie_name "spree_blogging_spree"
-    
-    config.autoload_paths += %W(#{config.root}/lib) 
-    
+
     def self.activate  
       
       Dir.glob(File.join(File.dirname(__FILE__), "../app/**/*_decorator*.rb")) do |c|
@@ -20,7 +17,7 @@ module SpreeBloggingSpree
       Ability.register_ability(SpreeBloggingSpreeAbility)
     end
     
-     
+    config.autoload_paths += %W(#{config.root}/lib) 
     config.to_prepare &method(:activate).to_proc
   end
 end
