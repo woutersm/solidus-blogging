@@ -1,6 +1,7 @@
 require "is_taggable"
 
-  class BlogEntry < ActiveRecord::Base
+  
+class BlogEntry < ActiveRecord::Base
   is_taggable :tags
   before_save :create_permalink
   validates_presence_of :title
