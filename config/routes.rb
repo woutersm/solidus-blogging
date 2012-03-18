@@ -2,6 +2,7 @@ Spree::Core::Engine.routes.prepend do
   namespace :admin do
     resources :blog_entries
   end
+  
   resources :blog_entries
 
   match 'blog/tag/:tag', :to => 'blog_entries#tag', :as => :tag
