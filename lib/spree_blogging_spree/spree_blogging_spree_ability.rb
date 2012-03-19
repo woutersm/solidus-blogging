@@ -2,7 +2,7 @@ class SpreeBloggingSpreeAbility
   include CanCan::Ability
 
   def initialize(user)
-    can :read, BlogEntry
-    can :index, BlogEntry
+    can :read, Spree::BlogEntry
+    can :index, Spree::BlogEntry
   end
 end
