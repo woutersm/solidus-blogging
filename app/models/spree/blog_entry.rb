@@ -35,7 +35,7 @@ class Spree::BlogEntry < ActiveRecord::Base
         months_for(year).each do |month|
           date = Date.new(year, month)
           entries[year] ||= []
-          entries[year] << [date.strftime("%B"), BlogEntry.by_date(date, :month)]
+          entries[year] << [date.strftime("%B"), Spree::BlogEntry.by_date(date, :month)]
         end
       end
     end
