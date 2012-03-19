@@ -1,4 +1,4 @@
-class Spree::BlogEntriesController < Spree::BaseController
+class BlogEntriesController < Spree::BaseController
   #resource_controller
   #actions :show, :index
 

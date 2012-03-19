@@ -1,4 +1,4 @@
-class Admin::BlogEntriesController < Admin::ResourceController
+class Spree::Admin::BlogEntriesController < Admin::ResourceController
   #resource_controller
 
   # index.before do 
