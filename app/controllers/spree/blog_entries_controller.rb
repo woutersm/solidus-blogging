@@ -10,6 +10,7 @@ class Spree::BlogEntriesController < Spree::BaseController
   
   def show
      @blog_entry = Spree::BlogEntry.find_by_permalink(params[:slug])
+     @title = 
   end
 
   def tag
@@ -20,6 +21,10 @@ class Spree::BlogEntriesController < Spree::BaseController
   def archive
     @blog_entries = Spree::BlogEntry.by_date(params)
     render :action => :index
+  end
+
+  def accurate_title
+    @blog_entry ?  @blog_entry.title : nil
   end
 
   private
