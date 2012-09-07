@@ -24,7 +24,7 @@ class Spree::BlogEntry < ActiveRecord::Base
   end 
 
   def self.by_tag(name)
-    find(:all, :select => 'DISTINCT blog_entries.*', :joins => [:taggings, :tags], :conditions => {'tags.name' => name })
+    find(:all, :select => 'DISTINCT spree_blog_entries.*', :joins => [:taggings, :tags], :conditions => {'tags.name' => name })
   end
 
   private

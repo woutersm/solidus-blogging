@@ -8,6 +8,7 @@ class Spree::BlogEntriesController < Spree::BaseController
   
   def show
      @blog_entry = Spree::BlogEntry.find_by_permalink(params[:slug])
+     @title = @blog_entry.title
   end
 
   def tag
@@ -21,7 +22,7 @@ class Spree::BlogEntriesController < Spree::BaseController
   end
 
   def accurate_title
-    @blog_entry ?  @blog_entry.title : nil
+    @blog_entry ?  @blog_entry.title : "my title"
   end
 
   private
