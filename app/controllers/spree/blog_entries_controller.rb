@@ -10,7 +10,6 @@ class Spree::BlogEntriesController < Spree::BaseController
   
   def show
      @blog_entry = Spree::BlogEntry.find_by_permalink(params[:slug])
-     @title = 
   end
 
   def tag
