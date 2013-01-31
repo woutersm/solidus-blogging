@@ -1,6 +1,6 @@
 class CreateBlogEntries < ActiveRecord::Migration
   def self.up
-    create_table :blog_entries do |t|
+    create_table :spree_blog_entries do |t|
       t.column :title, :string
       t.column :body, :text
       t.column :permalink, :string
@@ -9,6 +9,6 @@ class CreateBlogEntries < ActiveRecord::Migration
   end
 
   def self.down
-    drop_table :blog_entries
+    drop_table :spree_blog_entries
   end
 end

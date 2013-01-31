@@ -15,13 +15,15 @@
     <tr>
       <th class="date">Date</th>
       <th class="title">Title</th>
+      <th class="">Path</th>
       <th></th> 
     </tr>
 
   <% @blog_entries.each do |blog_entry| %>
     <tr id="<%= dom_id blog_entry %>">
-      <td><%= l( blog_entry.created_at.to_date, :format => :long) %></td>
+      <td><%= l( blog_entry.created_at, :format => :blog_date) %></td>
       <td><%= blog_entry.title %></td>
+      <td><%= link_to blog_entry_permalink(blog_entry), blog_entry_permalink(blog_entry) %></td>
       <td class="actions">
         <%= link_to_edit blog_entry %>
         &nbsp;

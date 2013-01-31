@@ -1,16 +1,13 @@
-<h2><%= link_to e.title, entry_permalink(e) %></h2>
+<h2><%= link_to e.title, blog_entry_permalink(e) %></h2>
 
-<div class="date">
-  <%= l( e.created_at.to_date, :format => :long) %>
+<div class="blog_entry_date">
+  <%= l(e.created_at, :format => :blog_date) %>
 </div>
 
-<div class="body">
-	<%#= link_to(image_tag(e.blog_entry_image.attachment.url(:normal)), e) if e.blog_entry_image %>
-  <%= raw e.body %>
+<div class="blog_entry_summary">
+  <%== e.summary %>
 </div>
 
 <% unless e.tag_list.empty? %>
   <%= render :partial => 'spree/blog_entries/tag_list', :locals => {:e => e}  %>
 <% end %>
-
-<br/>

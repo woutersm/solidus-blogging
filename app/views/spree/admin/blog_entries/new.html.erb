@@ -2,5 +2,7 @@
 
 <%= form_for([:admin, @blog_entry], :html => { :multipart => true }) do |f| %>
   <%= render :partial => f %>
-  <%= render :partial => 'admin/shared/new_resource_links' %>
+  <p class="form-buttons" data-hook="buttons">
+    <%= button t(:create) %>
+  </p>
 <% end %>

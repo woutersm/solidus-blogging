@@ -1,23 +1,30 @@
+# encoding: UTF-8
 Gem::Specification.new do |s|
   s.platform    = Gem::Platform::RUBY
   s.name        = 'spree_blogging_spree'
-  s.version     = '0.2.1'
-  s.summary     = 'BloggingSpree: A Spree blogging solution (Updated to Spree 0.30 and Rails 3)'
-  #s.description = 'Add (optional) gem description here'
+  s.version     = '0.3.0'
+  s.summary     = 'BloggingSpree: A Spree blogging solution'
+  #s.description = 'TODO: Add (optional) gem description here'
   s.required_ruby_version = '>= 1.8.7'
 
+  s.author    = 'Paul Callaghan, Ray Mendoza, Stefan Senk'
+  # s.email     = 'you@example.com'
+  # s.homepage  = 'http://www.spreecommerce.com'
 
-  s.author            = 'Paul Callaghan, Ray Mendoza'
-  # s.email             = 'david@loudthinking.com'
-  # s.homepage          = 'http://www.rubyonrails.org'
-  # s.rubyforge_project = 'actionmailer'
-
-  s.files        = Dir['CHANGELOG', 'README.md', 'LICENSE', 'lib/**/*', 'app/**/*']
+  #s.files       = `git ls-files`.split("\n")
+  #s.test_files  = `git ls-files -- {test,spec,features}/*`.split("\n")
   s.require_path = 'lib'
   s.requirements << 'none'
 
-  s.has_rdoc = true
+  s.add_dependency 'spree_core', '~> 1.2.4.beta'
+  s.add_dependency 'acts-as-taggable-on', '~> 2.3.1'
 
-  s.add_dependency('spree_core', '>= 0.30.0')
-  s.add_dependency('is_taggable')
+  s.add_development_dependency 'capybara', '1.0.1'
+  s.add_development_dependency 'factory_girl', '~> 2.6.4'
+  s.add_development_dependency 'ffaker'
+  s.add_development_dependency 'rspec-rails',  '~> 2.9'
+  s.add_development_dependency 'sqlite3'
+  s.add_development_dependency 'launchy'
+  s.add_development_dependency 'spork-rails'
+  s.add_development_dependency 'sass-rails'
 end

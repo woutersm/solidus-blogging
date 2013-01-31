@@ -1,9 +1,8 @@
-<div id="blog-container">
-
+<div id="blog_entry_container">
   <% if !@blog_entries.empty? %>
-    <ul id="blog-entries">
+    <ul id="blog_entry_entries">
       <% @blog_entries.each do |e| %>
-        <li class="blog_entry">
+        <li>
           <%= render :partial => 'spree/blog_entries/blog', :locals => {:e => e} %>
         </li>
       <% end %>
@@ -11,11 +10,8 @@
   <% else %>
     <p id="no_entries"><%= t('no_blog_entries') %></p>
   <% end %>
-  <br class="clearfloat" />
 </div>  
 
 <% content_for :sidebar do %>
-  <div id="blog-sidebar">
-    <%= render :partial => 'spree/blog_entries/news_archive', :object => @news_archive %>
-  </div>
-<% end %> 
+  <%= render :partial => 'spree/blog_entries/sidebar_index' %>
+<% end %>

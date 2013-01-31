@@ -1,14 +1,23 @@
-<div id="blog-container">
-  <ul id="blog-entries">
-    <li class="blog_entry">
-      <%= render :partial => 'spree/blog_entries/blog', :locals => {:e => @blog_entry} %>
-    </li>
-  </ul>
-  <br class="clearfloat">
+<div id="blog_entry_container">
+  <div id="blog_entry_entry">
+    <h1><%= @blog_entry.title %></h1>
+
+    <div class="blog_entry_date">
+      <%= l(@blog_entry.created_at, :format => :blog_date) %>
+    </div>
+
+    <div class="blog_entry_body">
+      <%== @blog_entry.body %>
+    </div>
+
+    <% unless @blog_entry.tag_list.empty? %>
+      <%= render :partial => 'spree/blog_entries/tag_list', :locals => {:e => @blog_entry}  %>
+    <% end %>
+  </div>
+
+  <%= render :partial => 'spree/blog_entries/comments', :locals => {:e => @blog_entry}  %>
 </div> 
 
 <% content_for :sidebar do %>
-  <div id="blog-sidebar">
-    <%= render :partial => 'spree/blog_entries/news_archive', :object => @news_archive %>
-   </div>
-<% end %>        
+  <%= render :partial => 'spree/blog_entries/sidebar_show' %>
+<% end %>

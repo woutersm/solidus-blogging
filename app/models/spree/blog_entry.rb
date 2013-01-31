@@ -1,8 +1,7 @@
-require "is_taggable"
+require 'acts-as-taggable-on'
 
-  
 class Spree::BlogEntry < ActiveRecord::Base
-  is_taggable :tags
+  acts_as_taggable
   before_save :create_permalink
   validates_presence_of :title
   default_scope :order => "created_at DESC"    
@@ -11,6 +10,10 @@ class Spree::BlogEntry < ActiveRecord::Base
   has_one :blog_entry_image, :as => :viewable, :dependent => :destroy
 
   accepts_nested_attributes_for :blog_entry_image#, :reject_if => lambda { |image| image[:attachment].blank? }
+
+  def summary(chars = 800)
+    "#{body[0...chars]}#{body.length > chars ? '...' : ''}"
+  end
 
   def self.by_date(date, period = nil)
     if date.is_a?(Hash)
@@ -24,7 +27,7 @@ class Spree::BlogEntry < ActiveRecord::Base
   end 
 
   def self.by_tag(name)
-    find(:all, :select => 'DISTINCT spree_blog_entries.*', :joins => [:taggings, :tags], :conditions => {'tags.name' => name })
+    tagged_with(name)
   end
 
   private

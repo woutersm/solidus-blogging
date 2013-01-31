@@ -1,3 +1,5 @@
+//= require store/spree_core
+
 jQuery(function() {
   $('#news-archive')
     .find('ul').hide()

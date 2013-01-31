@@ -1,0 +1,20 @@
+/*
+ *= require store/spree_core
+*/
+
+/* news archive widget */
+#blog-sidebar ul.months { width: 185px }
+#blog-sidebar ul ul li { font-weight: normal; margin-bottom: 5px; }
+
+#blog-sidebar li { list-style-type: none }
+#blog-sidebar li ul.posts { width: 168px }
+
+#news-archive li.year { width: 206px }
+
+#news-archive li a { text-decoration: none }
+#news-archive > li a { font-weight: bold; color: #717679 }
+#news-archive ul.months > li a { color: #717679 }
+#news-archive ul.posts > li a { font-weight: normal; color: #2e6ab1 }
+#news-archive ul.posts > li a:hover { text-decoration: underline }
+
+#news-archive span { cursor: pointer; color: #717679 }
