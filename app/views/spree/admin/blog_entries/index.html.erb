@@ -12,25 +12,29 @@
 
 <% unless @blog_entries.blank? %>
   <table class="entry-list index">
-    <tr>
-      <th class="date">Date</th>
-      <th class="title">Title</th>
-      <th class="">Path</th>
-      <th></th> 
-    </tr>
+    <thead>
+      <tr>
+        <th class="date">Date</th>
+        <th class="title">Title</th>
+        <th class="">Path</th>
+        <th></th> 
+      </tr>
+    <thead>
 
-  <% @blog_entries.each do |blog_entry| %>
-    <tr id="<%= dom_id blog_entry %>">
-      <td><%= l( blog_entry.created_at, :format => :blog_date) %></td>
-      <td><%= blog_entry.title %></td>
-      <td><%= link_to blog_entry_permalink(blog_entry), blog_entry_permalink(blog_entry) %></td>
-      <td class="actions">
-        <%= link_to_edit blog_entry %>
-        &nbsp;
-        <%= link_to_delete blog_entry, :title => t('are_you_sure_blog_entry') %>
-      </td>
-    </tr>
-  <% end %>
+    <tbody>
+      <% @blog_entries.each do |blog_entry| %>
+        <tr id="<%= dom_id blog_entry %>">
+          <td><%= l( blog_entry.created_at, :format => :blog_date) %></td>
+          <td><%= blog_entry.title %></td>
+          <td><%= link_to blog_entry_permalink(blog_entry), blog_entry_permalink(blog_entry) %></td>
+          <td class="actions">
+            <%= link_to_edit blog_entry %>
+            &nbsp;
+            <%= link_to_delete blog_entry, :title => t('are_you_sure_blog_entry') %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
 <% else %>
   <p><%= t('no_blog_entries') %></p>
 <% end %>

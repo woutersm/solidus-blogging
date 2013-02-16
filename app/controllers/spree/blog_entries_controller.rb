@@ -12,7 +12,8 @@ class Spree::BlogEntriesController < Spree::BaseController
   end
 
   def tag
-    @blog_entries = Spree::BlogEntry.by_tag(params[:tag])   
+    @blog_entries = Spree::BlogEntry.by_tag(params[:tag])
+    @tag_name = params[:tag] if @blog_entries.any?
     render :action => :index
   end
 

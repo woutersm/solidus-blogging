@@ -1,6 +1,7 @@
 require 'acts-as-taggable-on'
 
 class Spree::BlogEntry < ActiveRecord::Base
+  attr_accessible :title, :body, :tag_list
   acts_as_taggable
   before_save :create_permalink
   validates_presence_of :title
