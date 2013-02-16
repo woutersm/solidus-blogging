@@ -3,7 +3,7 @@
     <h1><%= @blog_entry.title %></h1>
 
     <div class="blog_entry_date">
-      <%= l(@blog_entry.created_at, :format => :blog_date) %>
+      <%= l(@blog_entry.published_at, :format => :blog_date) %>
     </div>
 
     <div class="blog_entry_body">

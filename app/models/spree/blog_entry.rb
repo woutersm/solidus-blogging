@@ -1,19 +1,25 @@
 require 'acts-as-taggable-on'
 
 class Spree::BlogEntry < ActiveRecord::Base
-  attr_accessible :title, :body, :tag_list
+  attr_accessible :title, :body, :tag_list, :visible, :published_at, :summary, :permalink
   acts_as_taggable
   before_save :create_permalink
   validates_presence_of :title
-  default_scope :order => "created_at DESC"    
-  scope :recent, limit(5)
+  validates_presence_of :body
+
+  default_scope :order => "published_at DESC"
+  scope :visible, where(:visible => true)
+  scope :recent, lambda{|max=5| visible.limit(max) }
 
   has_one :blog_entry_image, :as => :viewable, :dependent => :destroy
-
   accepts_nested_attributes_for :blog_entry_image#, :reject_if => lambda { |image| image[:attachment].blank? }
 
-  def summary(chars = 800)
-    "#{body[0...chars]}#{body.length > chars ? '...' : ''}"
+  def entry_summary(chars=200)
+    if summary.blank?
+      "#{body[0...chars]}..."
+    else
+      summary
+    end
   end
 
   def self.by_date(date, period = nil)
@@ -24,7 +30,7 @@ class Spree::BlogEntry < ActiveRecord::Base
     end
 
     time = date.to_time.in_time_zone
-    find(:all, :conditions => {:created_at => (time.send("beginning_of_#{period}")..time.send("end_of_#{period}") )} )
+    find(:all, :conditions => {:published_at => (time.send("beginning_of_#{period}")..time.send("end_of_#{period}") )} )
   end 
 
   def self.by_tag(name)
@@ -46,15 +52,15 @@ class Spree::BlogEntry < ActiveRecord::Base
   end
 
   def self.years
-    all.map {|e| e.created_at.year }.uniq
+    all.map {|e| e.published_at.year }.uniq
   end
 
   def self.months_for(year)
-    all.select {|e| e.created_at.year == year }.map {|e| e.created_at.month }.uniq
+    all.select {|e| e.published_at.year == year }.map {|e| e.published_at.month }.uniq
   end
 
   def create_permalink
-    self.permalink = title.to_url
+    self.permalink = title.to_url if permalink.blank?
   end
 
   def validate

@@ -5,7 +5,7 @@ describe Spree::BlogEntry do
   context "with a date and a blog_entry" do
     before do
       @date = Date.new(2009, 3, 11)
-      @blog_entry = create(:blog_entry, :created_at => @date)
+      @blog_entry = create(:blog_entry, :published_at => @date)
     end
 
     context "and potentially incomplete date information" do
@@ -38,25 +38,40 @@ describe Spree::BlogEntry do
     end
   end
 
-  context "with a long body, summary" do
+  context "entry_summary" do
     before do
-      @blog_entry_long = create(:blog_entry, :body => "A long body for the blog post.")
-      @blog_entry_short = create(:blog_entry, :body => "Short")
+      @blog_entry = create(:blog_entry, :body => "A body for the blog post.", :summary => "")
     end
-    it "should return the truncated summary for a long body" do
-      @blog_entry_long.summary(6).should == "A long..."
+    it "should return the body if the summary is blank" do
+      @blog_entry.entry_summary.should == "A body for the blog post...."
     end
-    it "should return the full text for a short body" do
-      @blog_entry_short.summary(6).should == "Short"
+    it "should return summary if when it is present" do
+      @blog_entry.update_attribute(:summary, "This is my summary.")
+      @blog_entry.entry_summary.should == "This is my summary."
     end
   end
 
 
   context "with a few blog_entries" do
     before do
-      @first_entry = create(:blog_entry, :created_at => Date.new(2010, 1))
-      @second_entry = create(:blog_entry, :created_at => Date.new(2011, 2))
-      @third_entry = create(:blog_entry, :created_at => Date.new(2012, 3))
+      @first_entry = create(:blog_entry, :published_at => Date.new(2010, 1))
+      @second_entry = create(:blog_entry, :published_at => Date.new(2011, 2))
+      @third_entry = create(:blog_entry, :published_at => Date.new(2012, 3))
+    end
+
+    it "should recent should return the recent ordered blog entries" do
+      blog_entries = Spree::BlogEntry.recent(2)
+      blog_entries.count.should == 2
+      blog_entries.first.should == @third_entry
+      blog_entries.last.should == @second_entry
+    end
+
+    it "should recent should return the recent ordered blog entries" do
+      @second_entry.update_attribute(:visible, false)
+      blog_entries = Spree::BlogEntry.visible
+      blog_entries.should include(@first_entry)
+      blog_entries.should include(@third_entry)
+      blog_entries.should_not include(@second_entry)
     end
 
     it "should generate data for news archive widget" do
@@ -97,7 +112,7 @@ describe Spree::BlogEntry do
 
   context "with a BlogEntry created late in the day on 2/28/2010" do
     before do
-      @entry = create(:blog_entry, :created_at => Time.parse('2010-02-28 21:00:00'))
+      @entry = create(:blog_entry, :published_at => Time.parse('2010-02-28 21:00:00'))
     end
 
     it "should retrieve given entry when queried for February entries" do

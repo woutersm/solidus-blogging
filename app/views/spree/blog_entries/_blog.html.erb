@@ -1,11 +1,11 @@
 <h2><%= link_to e.title, blog_entry_permalink(e) %></h2>
 
 <div class="blog_entry_date">
-  <%= l(e.created_at, :format => :blog_date) %>
+  <%= l(e.published_at, :format => :blog_date) %>
 </div>
 
 <div class="blog_entry_summary">
-  <%== e.summary %>
+  <%== e.entry_summary %>
 </div>
 
 <% unless e.tag_list.empty? %>

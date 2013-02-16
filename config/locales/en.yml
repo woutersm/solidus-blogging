@@ -24,6 +24,9 @@ en:
       blog_entry:
         title: Title
         body: Body
+  title: Title
+  visible: Visible
+  published_at: Published at
 
   time:
     formats:
