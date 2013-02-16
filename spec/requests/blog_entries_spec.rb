@@ -9,6 +9,7 @@ describe "BlogEntries" do
       :published_at => Date.new(2020, 3, 11))
     @blog_entry.tag_list = "baz, bob"
     @blog_entry.save!
+
     @blog_entry2 = create(:blog_entry, 
       :title => "Another blog entry", 
       :body => "Another body.", 
@@ -16,6 +17,13 @@ describe "BlogEntries" do
       :published_at => Date.new(2020, 2, 4))
     @blog_entry2.tag_list = "bob, ben"
     @blog_entry2.save!
+
+    @blog_entry3 = create(:blog_entry, 
+      :title => "Invisible blog entry",
+      :visible => false,
+      :published_at => Date.new(2020, 3, 11))
+    @blog_entry3.tag_list = "baz, bob"
+    @blog_entry3.save!
   end
 
   context "index page" do
@@ -23,6 +31,10 @@ describe "BlogEntries" do
       visit "/blog"
       find('#content').should have_content("First blog entry")
       find('#content').should have_content("Another blog entry")
+    end
+    it "should not display invisible blog entries" do
+      visit "/blog"
+      find('#content').should_not have_content("Invisible blog entry")
     end
     it "should display the blog entry body summary" do
       visit "/blog"
@@ -80,6 +92,10 @@ describe "BlogEntries" do
       find('#content').should_not have_content("Another blog entry")
       find('#content').should_not have_content("Another body")
     end
+    it "should not display invisible blog entries" do
+      visit "/blog/tag/bob"
+      find('#content').should_not have_content("Invisible blog entry")
+    end
   end
 
   context "archive page" do
@@ -96,6 +112,10 @@ describe "BlogEntries" do
       find('#content').should_not have_content("Summary of the blog entry.")
       find('#content').should have_content("Another blog entry")
       find('#content').should have_content("Another body")
+    end
+    it "should not display invisible blog entries" do
+      visit "/blog/2020"
+      find('#content').should_not have_content("Invisible blog entry")
     end
   end
 end

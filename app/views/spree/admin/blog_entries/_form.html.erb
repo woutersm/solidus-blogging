@@ -4,56 +4,71 @@
   </div>
 <% end %>
 
-<%= form.field_container :title do %>
-  <%= form.label :title, t(:title) %> <span class="required">*</span><br />
-  <%= form.text_field :title %>
-  <%= form.error_message_on :title %>
-<% end %>
+<div class="clearfix">
+  <div class="left">
 
-<%= form.field_container :permalink do %>
-  <%= form.label :permalink, t(:permalink) %><br />
-  <%= form.text_field :permalink %>
-  <%= form.error_message_on :permalink %>
-<% end %>
+    <%= form.field_container :title do %>
+      <%= form.label :title, t(:title) %> <span class="required">*</span><br />
+      <%= form.text_field :title, :class => 'fullwidth title' %>
+      <%= form.error_message_on :title %>
+    <% end %>
 
-<p>
-	<%= form.fields_for :blog_entry_image do |blog_entry_image_fields| %>
-		<%= blog_entry_image_fields.label :attachment, t(:blogs_main_image) %><br/>
-		<%= blog_entry_image_fields.file_field :attachment %>
-	<% end %>
-</p>
+    <%= form.field_container :permalink do %>
+      <%= form.label :permalink, t(:permalink) %> <span class="required">*</span><br />
+      <%= form.text_field :permalink, :class => 'fullwidth title' %>
+      <%= form.error_message_on :permalink %>
+    <% end %>
+
+    <p>
+      <%= form.fields_for :blog_entry_image do |blog_entry_image_fields| %>
+        <%= blog_entry_image_fields.label :attachment, t(:blogs_main_image) %><br/>
+        <%= blog_entry_image_fields.file_field :attachment %>
+      <% end %>
+    </p>
+
+  </div>
+  <div class="right">
+
+    <%= form.field_container :visible do %>
+      <%= form.label :visible, t(:visible) %><br />
+      <%= form.check_box :visible %>
+      <%= form.error_message_on :visible %>
+    <% end %>
+
+    <%= form.field_container :published_at do %>
+      <%= form.label :published_at, t(:published_at) %><br />
+      <%= form.error_message_on :published_at %>
+      <% if @blog_entry.published_at? %>
+        <% published_at = l(@blog_entry.published_at, :format => t('spree.date_picker.format')) %>
+      <% else %>
+        <% published_at = nil %>
+      <% end %>
+      <%= form.text_field :published_at, :value => published_at, :class => 'datepicker' %>
+    <% end %>
+
+    <%= form.field_container :tag_list do %>
+      <%= form.label :tag_list, 'Tag List' %><br />
+      <%= form.text_field :tag_list %>
+    <% end %>
+
+    <% unless Rails.env.test? %>
+      <script>
+        $("#blog_entry_tag_list").select2({tags: <%= Spree::BlogEntry.tag_counts_on(:tags).map{|t| t.name }.to_json.html_safe %> });
+        $('.select2-container').css({width: '20em'})
+      </script>
+    <% end %>
+
+  </div>
+</div>
 
 <%= form.field_container :body do %>
-  <%= form.label :body %><span class="required">*</span><br />
+  <%= form.label :body %> <span class="required">*</span><br />
   <%= form.text_area :body, {:cols => 60, :rows => 4, :class => 'fullwidth', :id => 'blog_entry_body'} %>
   <%= form.error_message_on :body %>
 <% end %>
 
-<%= form.field_container :visible do %>
-  <%= form.label :visible, t(:visible) %><br />
-  <%= form.check_box :visible %>
-  <%= form.error_message_on :visible %>
-<% end %>
-
-<%= form.field_container :published_at do %>
-  <%= form.label :published_at, t(:published_at) %><br />
-  <%= form.error_message_on :published_at %>
-  <% if @blog_entry.published_at? %>
-    <% published_at = l(@blog_entry.published_at, :format => t('spree.date_picker.format')) %>
-  <% else %>
-    <% published_at = nil %>
-  <% end %>
-  <%= form.text_field :published_at, :value => published_at, :class => 'datepicker' %>
-<% end %>
-
-<%= form.field_container :tag_list do %>
-  <%= form.label :tag_list, 'Tag List' %><br />
-  <%= form.text_field :tag_list %>
-  <%= t('tag_list_example') %>
-<% end %>
-
 <%= form.field_container :summary do %>
-  <%= form.label :summary %><span class="required">*</span><br />
+  <%= form.label :summary %><br />
   <%= form.text_area :summary, {:cols => 60, :rows => 4, :class => 'fullwidth', :id => 'blog_entry_summary'} %>
   <%= form.error_message_on :summary %>
 <% end %>

@@ -38,26 +38,27 @@ class Spree::BlogEntry < ActiveRecord::Base
     tagged_with(name)
   end
 
-  private
-
+  # data for news archive widget, only visible entries
   def self.organize_blog_entries
     Hash.new.tap do |entries|
       years.each do |year|
         months_for(year).each do |month|
           date = Date.new(year, month)
           entries[year] ||= []
-          entries[year] << [date.strftime("%B"), self.by_date(date, :month)]
+          entries[year] << [date.strftime("%B"), self.visible.by_date(date, :month)]
         end
       end
     end
   end
 
+  private
+
   def self.years
-    all.map {|e| e.published_at.year }.uniq
+    visible.all.map {|e| e.published_at.year }.uniq
   end
 
   def self.months_for(year)
-    all.select {|e| e.published_at.year == year }.map {|e| e.published_at.month }.uniq
+    visible.all.select {|e| e.published_at.year == year }.map {|e| e.published_at.month }.uniq
   end
 
   def create_permalink

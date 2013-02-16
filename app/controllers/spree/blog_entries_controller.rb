@@ -1,24 +1,29 @@
 class Spree::BlogEntriesController < Spree::BaseController
 
-  before_filter :load_news_archive_data   
+  before_filter :load_news_archive_data 
+  rescue_from ActiveRecord::RecordNotFound, :with => :render_404
   
   def index
-     @blog_entries = Spree::BlogEntry.order("created_at DESC")
-  end  
+     @blog_entries = Spree::BlogEntry.visible
+  end
   
   def show
-     @blog_entry = Spree::BlogEntry.find_by_permalink(params[:slug])
-     @title = @blog_entry.title
+    if try_spree_current_user.try(:has_spree_role?, "admin")
+      @blog_entry = Spree::BlogEntry.find_by_permalink!(params[:slug])
+    else
+      @blog_entry = Spree::BlogEntry.visible.find_by_permalink!(params[:slug])
+    end
+    @title = @blog_entry.title
   end
 
   def tag
-    @blog_entries = Spree::BlogEntry.by_tag(params[:tag])
+    @blog_entries = Spree::BlogEntry.visible.by_tag(params[:tag])
     @tag_name = params[:tag] if @blog_entries.any?
     render :action => :index
   end
 
   def archive
-    @blog_entries = Spree::BlogEntry.by_date(params)
+    @blog_entries = Spree::BlogEntry.visible.by_date(params)
     render :action => :index
   end
 

@@ -75,6 +75,7 @@ describe Spree::BlogEntry do
     end
 
     it "should generate data for news archive widget" do
+      @invisible_entry = create(:blog_entry, :published_at => Date.new(2012, 3), :visible => false)
       organized_entries = Spree::BlogEntry.organize_blog_entries
 
       organized_entries.should be_an_instance_of(Hash)
@@ -86,6 +87,7 @@ describe Spree::BlogEntry do
       organized_entries[2010][0][1].should include(@first_entry)
       organized_entries[2011][0][1].should include(@second_entry)
       organized_entries[2012][0][1].should include(@third_entry)
+      organized_entries[2012][0][1].should_not include(@invisible_entry)
     end
 
     it "should generate a reverse-sorted list of the unique years encompassed by the blog_entries" do
