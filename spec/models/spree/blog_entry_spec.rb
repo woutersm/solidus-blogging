@@ -122,4 +122,11 @@ describe Spree::BlogEntry do
     end
   end
 
+  it "should populate published_at date when making a post visible" do
+    @blog_entry = create(:blog_entry, :published_at => nil, :visible => false)
+    @blog_entry.published_at.should be_nil
+
+    @blog_entry = create(:blog_entry, :published_at => nil, :visible => true)
+    @blog_entry.published_at.should_not be_nil
+  end
 end

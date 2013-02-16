@@ -4,6 +4,7 @@ class Spree::BlogEntry < ActiveRecord::Base
   attr_accessible :title, :body, :tag_list, :visible, :published_at, :summary, :permalink
   acts_as_taggable
   before_save :create_permalink
+  before_save :set_published_at
   validates_presence_of :title
   validates_presence_of :body
 
@@ -61,6 +62,10 @@ class Spree::BlogEntry < ActiveRecord::Base
 
   def create_permalink
     self.permalink = title.to_url if permalink.blank?
+  end
+
+  def set_published_at
+    self.published_at = Time.now if visible? and published_at.blank?
   end
 
   def validate

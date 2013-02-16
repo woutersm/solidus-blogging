@@ -16,8 +16,16 @@ describe "Blog Entry" do
       click_link "Blog"
     end
 
-    it "should display blog entries" do
-      page.should have_content("First blog entry")
+    context "index page" do
+      it "should display blog titles" do
+        page.should have_content("First blog entry")
+      end
+      it "should display blog published_at" do
+        page.should have_content("11 Mar 2010")
+      end
+      it "should display blog visible" do
+        page.should have_css('img', :alt => "Cross")
+      end
     end
 
     it "should edit an existing blog entry" do

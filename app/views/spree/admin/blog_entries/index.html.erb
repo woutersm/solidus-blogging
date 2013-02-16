@@ -14,9 +14,10 @@
   <table class="entry-list index">
     <thead>
       <tr>
-        <th class="date">Date</th>
-        <th class="title">Title</th>
-        <th class="">Path</th>
+        <th class="date"><%= t('published_at') %></th>
+        <th class="title"><%= t('title') %></th>
+        <th class=""><%= t('path') %></th>
+        <th class=""><%= t('visible') %></th>
         <th></th> 
       </tr>
     <thead>
@@ -24,9 +25,10 @@
     <tbody>
       <% @blog_entries.each do |blog_entry| %>
         <tr id="<%= dom_id blog_entry %>">
-          <td><%= l( blog_entry.created_at, :format => :blog_date) %></td>
+          <td><%= l( blog_entry.published_at, :format => :blog_date) if blog_entry.published_at %></td>
           <td><%= blog_entry.title %></td>
           <td><%= link_to blog_entry_permalink(blog_entry), blog_entry_permalink(blog_entry) %></td>
+          <td><%= blog_entry.visible? ? icon('tick') : icon('cross') %></td>
           <td class="actions">
             <%= link_to_edit blog_entry %>
             &nbsp;
