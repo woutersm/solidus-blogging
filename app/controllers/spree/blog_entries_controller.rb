@@ -26,6 +26,11 @@ class Spree::BlogEntriesController < Spree::BaseController
     @blog_entries = Spree::BlogEntry.visible.by_date(params)
     render :action => :index
   end
+  
+  def feed
+    @blog_entries = Spree::BlogEntry.visible.limit(20)
+    render :layout => false
+  end 
 
   def accurate_title
     @blog_entry ?  @blog_entry.title : "my title"
