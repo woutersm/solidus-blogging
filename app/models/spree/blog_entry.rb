@@ -27,7 +27,7 @@ class Spree::BlogEntry < ActiveRecord::Base
     if date.is_a?(Hash)
       keys = [:day, :month, :year].select {|key| date.include?(key) }
       period = keys.first.to_s
-      date = Date.new(*keys.reverse.map {|key| date[key].to_i })
+      date = DateTime.new(*keys.reverse.map {|key| date[key].to_i })
     end
 
     time = date.to_time.in_time_zone
@@ -43,7 +43,7 @@ class Spree::BlogEntry < ActiveRecord::Base
     Hash.new.tap do |entries|
       years.each do |year|
         months_for(year).each do |month|
-          date = Date.new(year, month)
+          date = DateTime.new(year, month)
           entries[year] ||= []
           entries[year] << [date.strftime("%B"), self.visible.by_date(date, :month)]
         end

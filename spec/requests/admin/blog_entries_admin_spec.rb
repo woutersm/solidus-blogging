@@ -10,7 +10,7 @@ describe "Blog Entry" do
         :body => "Body of the blog entry.", 
         :summary => "", 
         :visible => false, 
-        :published_at => Date.new(2010, 3, 11))
+        :published_at => DateTime.new(2010, 3, 11))
 
       visit spree.admin_path
       click_link "Blog"

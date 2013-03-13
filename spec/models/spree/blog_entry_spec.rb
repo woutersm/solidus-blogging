@@ -4,7 +4,7 @@ describe Spree::BlogEntry do
 
   context "with a date and a blog_entry" do
     before do
-      @date = Date.new(2009, 3, 11)
+      @date = DateTime.new(2009, 3, 11)
       @blog_entry = create(:blog_entry, :published_at => @date)
     end
 
@@ -54,9 +54,9 @@ describe Spree::BlogEntry do
 
   context "with a few blog_entries" do
     before do
-      @first_entry = create(:blog_entry, :published_at => Date.new(2010, 1))
-      @second_entry = create(:blog_entry, :published_at => Date.new(2011, 2))
-      @third_entry = create(:blog_entry, :published_at => Date.new(2012, 3))
+      @first_entry = create(:blog_entry, :published_at => DateTime.new(2010, 1))
+      @second_entry = create(:blog_entry, :published_at => DateTime.new(2011, 2))
+      @third_entry = create(:blog_entry, :published_at => DateTime.new(2012, 3))
     end
 
     it "should recent should return the recent ordered blog entries" do
@@ -75,7 +75,7 @@ describe Spree::BlogEntry do
     end
 
     it "should generate data for news archive widget" do
-      @invisible_entry = create(:blog_entry, :published_at => Date.new(2012, 3), :visible => false)
+      @invisible_entry = create(:blog_entry, :published_at => DateTime.new(2012, 3), :visible => false)
       organized_entries = Spree::BlogEntry.organize_blog_entries
 
       organized_entries.should be_an_instance_of(Hash)
@@ -118,7 +118,7 @@ describe Spree::BlogEntry do
     end
 
     it "should retrieve given entry when queried for February entries" do
-      date = Date.new(2010, 2)
+      date = DateTime.new(2010, 2)
       entries = Spree::BlogEntry.by_date(date, :month)
       entries.should include(@entry)
     end

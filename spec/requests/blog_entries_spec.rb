@@ -6,7 +6,7 @@ describe "BlogEntries" do
       :title => "First blog entry", 
       :body => "Body of the blog entry.", 
       :summary => "Summary of the blog entry.",
-      :published_at => Date.new(2020, 3, 11))
+      :published_at => DateTime.new(2020, 3, 11))
     @blog_entry.tag_list = "baz, bob"
     @blog_entry.save!
 
@@ -14,14 +14,14 @@ describe "BlogEntries" do
       :title => "Another blog entry", 
       :body => "Another body.", 
       :summary => "",
-      :published_at => Date.new(2020, 2, 4))
+      :published_at => DateTime.new(2020, 2, 4))
     @blog_entry2.tag_list = "bob, ben"
     @blog_entry2.save!
 
     @blog_entry3 = create(:blog_entry, 
       :title => "Invisible blog entry",
       :visible => false,
-      :published_at => Date.new(2020, 3, 11))
+      :published_at => DateTime.new(2020, 3, 11))
     @blog_entry3.tag_list = "baz, bob"
     @blog_entry3.save!
   end

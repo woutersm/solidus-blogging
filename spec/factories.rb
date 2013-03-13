@@ -5,7 +5,7 @@ FactoryGirl.define do
     title 'A Blog Entry Title'
     body 'A Blog Entry Body'
     permalink {|entry| entry.title.to_url }
-    published_at Date.new(2010)
+    published_at DateTime.new(2010)
     visible true
     summary 'A Blog Entry Summary'
   end
