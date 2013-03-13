@@ -26,6 +26,18 @@
       <% end %>
     </p>
 
+    <%= form.field_container :tag_list do %>
+      <%= form.label :tag_list, 'Tag List' %><br />
+      <%= form.text_field :tag_list %>
+    <% end %>
+
+    <% unless Rails.env.test? %>
+      <script>
+        $("#blog_entry_tag_list").select2({tags: <%= Spree::BlogEntry.tag_counts_on(:tags).map{|t| t.name }.to_json.html_safe %> });
+        $('.select2-container').css({width: '20em'})
+      </script>
+    <% end %>
+
   </div>
   <div class="right">
 
@@ -49,18 +61,6 @@
     <%= form.field_container :author do %>
       <%= form.label :author, 'Author' %><br />
       <%= form.text_field :author %>
-    <% end %>
-
-    <%= form.field_container :tag_list do %>
-      <%= form.label :tag_list, 'Tag List' %><br />
-      <%= form.text_field :tag_list %>
-    <% end %>
-
-    <% unless Rails.env.test? %>
-      <script>
-        $("#blog_entry_tag_list").select2({tags: <%= Spree::BlogEntry.tag_counts_on(:tags).map{|t| t.name }.to_json.html_safe %> });
-        $('.select2-container').css({width: '20em'})
-      </script>
     <% end %>
 
   </div>
