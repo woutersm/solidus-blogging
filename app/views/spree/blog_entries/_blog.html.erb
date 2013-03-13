@@ -1,7 +1,10 @@
 <h2><%= link_to e.title, blog_entry_permalink(e) %></h2>
 
-<div class="blog_entry_date">
-  <%= l(e.published_at, :format => :blog_date) %>
+<div class="blog_entry_details">
+  <span class="blog_entry_date"><%= l(e.published_at, :format => :blog_date) %></span>
+  <% unless e.author.blank? %>
+    <%= t(:by) %> <span class="blog_entry_author"><%= e.author %></span>
+  <% end %>
 </div>
 
 <div class="blog_entry_summary">

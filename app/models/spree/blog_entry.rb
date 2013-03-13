@@ -1,7 +1,7 @@
 require 'acts-as-taggable-on'
 
 class Spree::BlogEntry < ActiveRecord::Base
-  attr_accessible :title, :body, :tag_list, :visible, :published_at, :summary, :permalink
+  attr_accessible :title, :body, :tag_list, :visible, :published_at, :summary, :permalink, :author
   acts_as_taggable
   before_save :create_permalink
   before_save :set_published_at

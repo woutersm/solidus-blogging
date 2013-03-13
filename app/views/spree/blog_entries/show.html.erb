@@ -2,8 +2,11 @@
   <div id="blog_entry_entry">
     <h1><%= @blog_entry.title %></h1>
 
-    <div class="blog_entry_date">
-      <%= l(@blog_entry.published_at, :format => :blog_date) %>
+    <div class="blog_entry_details">
+      <span class="blog_entry_date"><%= l(@blog_entry.published_at, :format => :blog_date) %></span>
+      <% unless @blog_entry.author.blank? %>
+        <%= t(:by) %> <span class="blog_entry_author"><%= @blog_entry.author %></span>
+      <% end %>
     </div>
 
     <div class="blog_entry_body">

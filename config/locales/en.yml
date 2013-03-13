@@ -27,6 +27,7 @@ en:
   title: Title
   visible: Visible
   published_at: Published at
+  by: by
 
   time:
     formats:

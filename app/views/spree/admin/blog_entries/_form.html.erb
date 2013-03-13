@@ -46,6 +46,11 @@
       <%= form.text_field :published_at, :value => published_at, :class => 'datepicker' %>
     <% end %>
 
+    <%= form.field_container :author do %>
+      <%= form.label :author, 'Author' %><br />
+      <%= form.text_field :author %>
+    <% end %>
+
     <%= form.field_container :tag_list do %>
       <%= form.label :tag_list, 'Tag List' %><br />
       <%= form.text_field :tag_list %>

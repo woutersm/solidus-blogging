@@ -6,6 +6,7 @@ describe "BlogEntries" do
       :title => "First blog entry", 
       :body => "Body of the blog entry.", 
       :summary => "Summary of the blog entry.",
+      :author => "Torony Polser",
       :published_at => DateTime.new(2020, 3, 11))
     @blog_entry.tag_list = "baz, bob"
     @blog_entry.save!
@@ -41,6 +42,10 @@ describe "BlogEntries" do
       find('#content').should have_content("Summary of the blog entry.")
       find('#content').should have_content("Another body.")
     end
+    it "should display the blog author" do
+      visit "/blog"
+      find('#content').should have_content("Torony Polser")
+    end
     it "should display the blog entry tags" do
       visit "/blog"
       find('#content').should have_content("baz")
@@ -55,10 +60,11 @@ describe "BlogEntries" do
   end
 
   context "blog entry page" do
-    it "should display the blog entry title and body" do
+    it "should display the blog entry details" do
       visit "/blog/2020/03/11/first-blog-entry"
       find('#content').should have_content("First blog entry")
       find('#content').should have_content("Body of the blog entry.")
+      find('#content').should have_content("Torony Polser")
     end
     it "should not display a different blog entry" do
       visit "/blog/2020/03/11/first-blog-entry"
