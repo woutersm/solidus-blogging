@@ -1,10 +1,11 @@
 class Spree::BlogEntriesController < Spree::BaseController
 
   before_filter :load_news_archive_data 
+  before_filter :init_pagination, :only => [:index, :tag, :archive]
   rescue_from ActiveRecord::RecordNotFound, :with => :render_404
   
   def index
-     @blog_entries = Spree::BlogEntry.visible
+    @blog_entries = Spree::BlogEntry.visible.page(@pagination_page).per(@pagination_per_page)
   end
   
   def show
@@ -17,13 +18,13 @@ class Spree::BlogEntriesController < Spree::BaseController
   end
 
   def tag
-    @blog_entries = Spree::BlogEntry.visible.by_tag(params[:tag])
+    @blog_entries = Spree::BlogEntry.visible.by_tag(params[:tag]).page(@pagination_page).per(@pagination_per_page)
     @tag_name = params[:tag] if @blog_entries.any?
     render :action => :index
   end
 
   def archive
-    @blog_entries = Spree::BlogEntry.visible.by_date(params)
+    @blog_entries = Spree::BlogEntry.visible.by_date(params).page(@pagination_page).per(@pagination_per_page)
     render :action => :index
   end
   
@@ -40,5 +41,10 @@ class Spree::BlogEntriesController < Spree::BaseController
 
   def load_news_archive_data
     @news_archive = Spree::BlogEntry.organize_blog_entries
+  end
+
+  def init_pagination
+    @pagination_page = params[:page].to_i > 0 ? params[:page].to_i : 1
+    @pagination_per_page = params[:per_page].to_i > 0 ? params[:per_page].to_i : 10
   end
 end

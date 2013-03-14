@@ -31,7 +31,7 @@ class Spree::BlogEntry < ActiveRecord::Base
     end
 
     time = date.to_time.in_time_zone
-    find(:all, :conditions => {:published_at => (time.send("beginning_of_#{period}")..time.send("end_of_#{period}") )} )
+    where(:published_at => (time.send("beginning_of_#{period}")..time.send("end_of_#{period}")) )
   end 
 
   def self.by_tag(name)

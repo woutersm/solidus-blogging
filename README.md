@@ -43,6 +43,7 @@ TODO
 
 - Allow searching for blog entries in the admin and front end.
 - Do something with BlogEntryImage - add tests or remove?
+- Get default per page from preferences.
 
 
 Copyright (c) 2013 [name of extension creator], released under the New BSD License

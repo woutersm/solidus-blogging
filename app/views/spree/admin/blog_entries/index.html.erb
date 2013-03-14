@@ -37,8 +37,10 @@
         </tr>
       <% end %>
     </tbody>
+  </table>
+
+  <%= paginate @blog_entries %>
 <% else %>
   <p><%= t('no_blog_entries') %></p>
 <% end %>
 
-</table>

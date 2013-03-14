@@ -7,6 +7,7 @@
         </li>
       <% end %>
     </ul>
+    <%= paginate @blog_entries %>
   <% else %>
     <p id="no_entries"><%= t('no_blog_entries') %></p>
   <% end %>
