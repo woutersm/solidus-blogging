@@ -1,4 +1,4 @@
-module BlogEntriesHelper     
+module BlogEntriesHelper
   def post_link_list
        link = Struct.new(:name,:url)
        BlogEntry.recent.collect { |post| link.new( post.title, blog_entry_permalink(post)) }

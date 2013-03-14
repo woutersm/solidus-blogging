@@ -1,6 +1,5 @@
 class Spree::BlogEntriesController < Spree::BaseController
 
-  before_filter :load_news_archive_data 
   before_filter :init_pagination, :only => [:index, :tag, :archive]
   rescue_from ActiveRecord::RecordNotFound, :with => :render_404
   
@@ -31,20 +30,12 @@ class Spree::BlogEntriesController < Spree::BaseController
   def feed
     @blog_entries = Spree::BlogEntry.visible.limit(20)
     render :layout => false
-  end 
-
-  def accurate_title
-    @blog_entry ?  @blog_entry.title : "my title"
   end
 
   private
 
-  def load_news_archive_data
-    @news_archive = Spree::BlogEntry.organize_blog_entries
-  end
-
-  def init_pagination
-    @pagination_page = params[:page].to_i > 0 ? params[:page].to_i : 1
-    @pagination_per_page = params[:per_page].to_i > 0 ? params[:per_page].to_i : 10
-  end
+    def init_pagination
+      @pagination_page = params[:page].to_i > 0 ? params[:page].to_i : 1
+      @pagination_per_page = params[:per_page].to_i > 0 ? params[:per_page].to_i : 10
+    end
 end

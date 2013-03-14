@@ -1,3 +1,10 @@
 <div id="blog_entry_sidebar">
-  <%= render :partial => 'spree/blog_entries/news_archive', :object => @news_archive %>
+  <h6>Tag Cloud</h6>
+  <%= render :partial => 'spree/blog_entries/tag_cloud', :object => Spree::BlogEntry %>
+
+  <h6>Recent Blog Entries</h6>
+  <%= render :partial => 'spree/blog_entries/recent_blog_entries', :object => Spree::BlogEntry.recent(10) %>
+
+  <h6>Blog Archive</h6>
+  <%= render :partial => 'spree/blog_entries/news_archive', :object => Spree::BlogEntry.organize_blog_entries %>
 </div>

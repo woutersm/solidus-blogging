@@ -1,0 +1,5 @@
+<ul class="recent_blog_entries">
+  <% recent_blog_entries.each do |blog_entry| %>
+    <li><%= link_to(blog_entry.title, blog_entry_permalink(blog_entry)) %></li>
+  <% end %>
+</ul>

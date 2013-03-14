@@ -1,0 +1,31 @@
+/*
+ *= require store/spree_core
+*/
+
+
+/* tag cloud widget */
+.tag_cloud { 
+  margin-bottom: 10px;
+
+  li { display: inline-block; }
+  .css1 { font-size: 1.0em; }
+  .css2 { font-size: 1.2em; }
+  .css3 { font-size: 1.4em; }
+  .css4 { font-size: 1.6em; }
+}
+
+/* recent blog entries widget */
+.recent_blog_entries { 
+  margin-bottom: 10px;
+}
+
+/* news archive widget */
+#news-archive {
+  li.year { width: 206px; }
+  li a { text-decoration: none; }
+  > li a { font-weight: bold; color: #717679; }
+  ul.months > li a { color: #717679; }
+  ul.posts > li a { font-weight: normal; color: #2e6ab1; }
+  ul.posts > li a:hover { text-decoration: underline; }
+  span { cursor: pointer; color: #717679; }
+}
