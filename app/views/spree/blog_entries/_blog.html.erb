@@ -9,6 +9,7 @@
 
 <div class="blog_entry_summary">
   <%== e.entry_summary %>
+  <span class="blog_read_more"><%= link_to t(:blog_read_more), blog_entry_permalink(e) %></span>
 </div>
 
 <% unless e.tag_list.empty? %>

@@ -28,6 +28,7 @@ en:
   visible: Visible
   published_at: Published at
   by: by
+  blog_read_more: Read more
 
   time:
     formats:
