@@ -59,8 +59,11 @@ end
 
 
 Spork.each_run do
-  Dir[File.join(File.dirname(__FILE__), "../app/models/**/*.rb")].each do |model|
-    load model
+  Dir[
+    File.join(File.dirname(__FILE__), "../app/models/**/*.rb"),
+    File.join(File.dirname(__FILE__), "../app/helpers/*.rb"),
+  ].each do |file|
+    load file
   end
   FactoryGirl.reload
 end
