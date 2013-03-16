@@ -37,6 +37,9 @@ describe "BlogEntries" do
       @widget.should have_content("bob")
       @widget.should have_content("ben")
     end
+    it "should not display tags for blog entries that are not visible" do
+      @widget.should_not have_content("bill")
+    end
   end
 
   context "Recent Entries" do
