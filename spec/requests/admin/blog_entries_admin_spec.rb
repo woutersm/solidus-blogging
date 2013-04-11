@@ -1,18 +1,17 @@
 require 'spec_helper'
 
 describe "Blog Entry" do
-  stub_authorization!
-
   context "as admin user" do
     before(:each) do
+      sign_in_as!(create(:admin_user))
+      visit spree.admin_path
+      
       @blog_entry = create(:blog_entry, 
         :title => "First blog entry", 
         :body => "Body of the blog entry.", 
         :summary => "", 
         :visible => false, 
         :published_at => DateTime.new(2010, 3, 11))
-
-      visit spree.admin_path
       click_link "Blog"
     end
 

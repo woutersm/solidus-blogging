@@ -1,4 +1,5 @@
-class Spree::BlogEntriesController < Spree::BaseController
+class Spree::BlogEntriesController < Spree::StoreController
+  helper 'spree/blog_entries' 
 
   before_filter :init_pagination, :only => [:index, :tag, :archive]
   rescue_from ActiveRecord::RecordNotFound, :with => :render_404

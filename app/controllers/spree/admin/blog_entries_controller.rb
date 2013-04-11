@@ -1,5 +1,5 @@
 class Spree::Admin::BlogEntriesController < Spree::Admin::ResourceController
-  helper :blog_entries 
+  helper 'spree/blog_entries'
 
 
   private
