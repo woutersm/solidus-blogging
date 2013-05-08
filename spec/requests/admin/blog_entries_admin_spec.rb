@@ -40,9 +40,7 @@ describe "Blog Entry" do
       click_on 'Update'
 
       page.should have_content("Blog entry has been successfully updated")
-      page.should have_content("New title")
-
-      within('table.entry-list tbody tr:nth-child(1)') { click_link "Edit" }
+      
       page.should have_content("New body")
       page.should have_content("New summary")
       find_field('blog_entry_title').value.should == "New title"
