@@ -7,7 +7,7 @@ describe "BlogEntries" do
       :body => "Body of the blog entry.", 
       :summary => "Summary of the blog entry.",
       :author => "Torony Polser",
-      :published_at => DateTime.new(2020, 3, 11))
+      :published_at => DateTime.new(2010, 3, 11))
     @blog_entry.tag_list = "baz, bob"
     @blog_entry.save!
 
@@ -15,14 +15,14 @@ describe "BlogEntries" do
       :title => "Another blog entry", 
       :body => "Another body.", 
       :summary => "",
-      :published_at => DateTime.new(2020, 2, 4))
+      :published_at => 1.day.ago)
     @blog_entry2.tag_list = "bob, ben"
     @blog_entry2.save!
 
     @blog_entry3 = create(:blog_entry, 
       :title => "Invisible blog entry",
       :visible => false,
-      :published_at => DateTime.new(2020, 3, 11))
+      :published_at => DateTime.new(2010, 3, 11))
     @blog_entry3.tag_list = "baz, bob, bill"
     @blog_entry3.save!
   end
@@ -51,6 +51,9 @@ describe "BlogEntries" do
       @widget.should have_content("First blog entry")
       @widget.should have_content("Another blog entry")
     end
+    it "should display the blog entry date" do
+      @widget.should have_content("1 day ago")
+    end
     it "should not display blog entries that are not visible" do
       @widget.should_not have_content("Invisible blog entry")
     end
@@ -70,11 +73,9 @@ describe "BlogEntries" do
     end
     it "should display the blog entry months" do
       @widget.should have_content("March")
-      @widget.should have_content("February")
     end
     it "should display the blog entry years" do
-      @widget.should have_content("2020")
-      @widget.should have_content("February")
+      @widget.should have_content("2010")
     end
   end
 
