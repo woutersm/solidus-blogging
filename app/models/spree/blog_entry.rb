@@ -66,7 +66,7 @@ class Spree::BlogEntry < ActiveRecord::Base
   end
 
   def set_published_at
-    self.published_at = Time.now if visible? and published_at.blank?
+    self.published_at = Time.now if published_at.blank?
   end
 
   def validate
