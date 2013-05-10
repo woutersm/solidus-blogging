@@ -1,6 +1,6 @@
 <% if @blog_entry.errors.any? %>
   <div id="errorExplanation">
-    <h2><%= t(:blog_form_error_message) %></h2>
+    <h2><%= Spree.t(:blog_form_error_message) %></h2>
   </div>
 <% end %>
 
@@ -8,21 +8,21 @@
   <div class="left">
 
     <%= form.field_container :title do %>
-      <%= form.label :title, t(:title) %> <span class="required">*</span><br />
+      <%= form.label :title, Spree.t(:title) %> <span class="required">*</span><br />
       <%= form.text_field :title, :class => 'fullwidth title' %>
       <%= form.error_message_on :title %>
     <% end %>
 
     <%= form.field_container :permalink do %>
-      <%= form.label :permalink, t(:permalink) %> <span class="required">*</span><br />
+      <%= form.label :permalink, Spree.t(:permalink) %> <span class="required">*</span><br />
       <%= form.text_field :permalink, :class => 'fullwidth title' %>
       <%= form.error_message_on :permalink %>
     <% end %>
 
     <p>
       <%= form.fields_for :blog_entry_image do |blog_entry_image_fields| %>
-        <%= blog_entry_image_fields.label :attachment, t(:blogs_main_image) %><br/>
-        <%= blog_entry_image_fields.file_field :attachment %>
+        <%= blog_entry_image_fields.label :attachment, Spree.t(:blogs_main_image) %><br/>
+        <%= blog_entry_image_fields.file_field :attachment %>d
       <% end %>
     </p>
 
@@ -42,16 +42,16 @@
   <div class="right">
 
     <%= form.field_container :visible do %>
-      <%= form.label :visible, t(:visible) %><br />
+      <%= form.label :visible, Spree.t(:visible) %><br />
       <%= form.check_box :visible %>
       <%= form.error_message_on :visible %>
     <% end %>
 
     <%= form.field_container :published_at do %>
-      <%= form.label :published_at, t(:published_at) %><br />
+      <%= form.label :published_at, Spree.t(:published_at) %><br />
       <%= form.error_message_on :published_at %>
       <% if @blog_entry.published_at? %>
-        <% published_at = l(@blog_entry.published_at, :format => t('spree.date_picker.format')) %>
+        <% published_at = l(@blog_entry.published_at, :format => Spree.t('date_picker.format')) %>
       <% else %>
         <% published_at = nil %>
       <% end %>

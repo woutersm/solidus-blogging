@@ -3,6 +3,6 @@
 <%= form_for([:admin, @blog_entry], :html => { :multipart => true }) do |f| %>
   <%= render :partial => f %>
   <p class="form-buttons" data-hook="buttons">
-    <%= button t(:create) %>
+    <%= button Spree.t(:create) %>
   </p>
 <% end %>

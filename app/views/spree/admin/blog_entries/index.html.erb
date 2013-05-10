@@ -1,22 +1,22 @@
 <div class='toolbar'>
   <ul class='actions'>
     <li>
-      <%= button_link_to t("new_entry"), new_object_url, :icon => 'add' %></p>
+      <%= button_link_to Spree.t("new_entry"), new_object_url, :icon => 'add' %></p>
     </li>
   </ul>
   <br class='clear' />
 </div>
 
-<h1><%= t('blog_entries') %></h1>
+<h1><%= Spree.t('blog_entries') %></h1>
 
 <% unless @blog_entries.blank? %>
   <table class="entry-list index">
     <thead>
       <tr>
-        <th class="date"><%= t('published_at') %></th>
-        <th class="title"><%= t('title') %></th>
-        <th class=""><%= t('path') %></th>
-        <th class=""><%= t('visible') %></th>
+        <th class="date"><%= Spree.t('published_at') %></th>
+        <th class="title"><%= Spree.t('title') %></th>
+        <th class=""><%= Spree.t('path') %></th>
+        <th class=""><%= Spree.t('visible') %></th>
         <th></th> 
       </tr>
     <thead>
@@ -31,7 +31,7 @@
           <td class="actions">
             <%= link_to_edit blog_entry %>
             &nbsp;
-            <%= link_to_delete blog_entry, :title => t('are_you_sure_blog_entry') %>
+            <%= link_to_delete blog_entry, :title => Spree.t('are_you_sure_blog_entry') %>
           </td>
         </tr>
       <% end %>
@@ -40,6 +40,6 @@
 
   <%= paginate @blog_entries %>
 <% else %>
-  <p><%= t('no_blog_entries') %></p>
+  <p><%= Spree.t('no_blog_entries') %></p>
 <% end %>
 

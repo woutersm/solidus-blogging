@@ -5,7 +5,7 @@
     <div class="blog_entry_details">
       <span class="blog_entry_date"><%= l(@blog_entry.published_at, :format => :blog_date) %></span>
       <% unless @blog_entry.author.blank? %>
-        <%= t(:by) %> <span class="blog_entry_author"><%= @blog_entry.author %></span>
+        <%= Spree.t(:by) %> <span class="blog_entry_author"><%= @blog_entry.author %></span>
       <% end %>
     </div>
 
