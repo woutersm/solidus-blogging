@@ -1,6 +1,9 @@
 SpreeBloggingSpree
 ==================
 
+[![Build Status](https://travis-ci.org/stefansenk/spree-blogging-spree.png)](https://travis-ci.org/stefansenk/spree-blogging-spree)
+
+
 A basic blogging solution for use with the [Spree](http://github.com/spree/spree) E-Commerce platform.
 
 Differing significantly from the original, this version started out as a newly generated extension for Spree 1.2 with the logic copied over and tests moved to RSpec.
