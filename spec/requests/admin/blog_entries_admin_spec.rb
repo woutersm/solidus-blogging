@@ -28,7 +28,7 @@ describe "Blog Entry" do
     end
 
     it "should edit an existing blog entry" do
-      within('table.entry-list tbody tr:nth-child(1)') { click_link "Edit" }
+      within_row(1) { click_icon :edit }
       fill_in 'Title', with: 'New title'
       fill_in 'Body', with: 'New body'
       fill_in 'Tag List', with: 'tag1, tag2'
