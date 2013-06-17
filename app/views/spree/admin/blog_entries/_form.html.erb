@@ -1,11 +1,7 @@
-<% if @blog_entry.errors.any? %>
-  <div id="errorExplanation">
-    <h2><%= t(:blog_form_error_message) %></h2>
-  </div>
-<% end %>
 
-<div class="clearfix">
-  <div class="left">
+
+<div class="row">
+  <div class="alpha ten columns">
 
     <%= form.field_container :title do %>
       <%= form.label :title, t(:title) %> <span class="required">*</span><br />
@@ -39,14 +35,9 @@
     <% end %>
 
   </div>
-  <div class="right">
 
-    <%= form.field_container :visible do %>
-      <%= form.label :visible, t(:visible) %><br />
-      <%= form.check_box :visible %>
-      <%= form.error_message_on :visible %>
-    <% end %>
-
+  <div class="omega six columns">
+    
     <%= form.field_container :published_at do %>
       <%= form.label :published_at, t(:published_at) %><br />
       <%= form.error_message_on :published_at %>
@@ -61,6 +52,12 @@
     <%= form.field_container :author do %>
       <%= form.label :author, 'Author' %><br />
       <%= form.text_field :author %>
+    <% end %>
+
+    <%= form.field_container :visible do %>
+      <%= form.label :visible, t(:visible) %><br />
+      <%= form.check_box :visible %>
+      <%= form.error_message_on :visible %>
     <% end %>
 
   </div>
