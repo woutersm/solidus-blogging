@@ -43,6 +43,10 @@ en:
     tagged: Tagged
     by: by
     blog_read_more: Read more
+    blog_archive: Archive
+    blog_tag: Tag
+    blog_category: Category
+    blog_author: Author
   time:
     formats:
       blog_date: "%e %b %Y"
