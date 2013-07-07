@@ -3,7 +3,7 @@
 <div class="blog_entry_details">
   <span class="blog_entry_date"><%= l(e.published_at, :format => :blog_date) %></span>
   <% unless e.author.blank? %>
-    <%= t(:by) %> <span class="blog_entry_author"><%= e.author %></span>
+    <%= t(:by) %> <span class="blog_entry_author"><%= e.author.nickname %></span>
   <% end %>
 </div>
 

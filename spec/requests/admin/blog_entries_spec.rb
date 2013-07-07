@@ -33,7 +33,6 @@ describe "Blog Entry" do
       fill_in 'Body', with: 'New body'
       fill_in 'Tag List', with: 'tag1, tag2'
       fill_in 'Summary', with: 'New summary'
-      fill_in 'Author', with: 'Torony Polser'
       check 'Visible'
       fill_in 'Published at', with: '2013/2/1'
       fill_in 'Permalink', with: 'some-permalink-path'
@@ -48,7 +47,17 @@ describe "Blog Entry" do
       find_field('blog_entry_published_at').value.should == "2013/02/01"
       find_field('blog_entry_visible').value.should == "1"
       find_field('blog_entry_permalink').value.should == "some-permalink-path"
-      find_field('blog_entry_author').value.should == "Torony Polser"
+    end
+
+    it "should add an author to a blog entry" do
+      user = create(:user, :email => "me@example.com")
+      user.spree_roles << Spree::Role.find_or_create_by_name('blogger')
+      within_row(1) { click_icon :edit }
+      select "me@example.com", :from => 'Author'
+      click_on 'Update'
+      page.should have_content("Blog entry has been successfully updated")
+      page.should have_content("me@example.com")
+      find_field('blog_entry_author_id').value.should == user.id.to_s
     end
   end
 end

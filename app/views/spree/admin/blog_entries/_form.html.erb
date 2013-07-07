@@ -11,7 +11,7 @@
 
     <%= form.field_container :permalink do %>
       <%= form.label :permalink, t(:permalink) %> <span class="required">*</span><br />
-      <%= form.text_field :permalink, :class => 'fullwidth title' %>
+      <%= form.text_field :permalink, :class => 'fullwidth' %>
       <%= form.error_message_on :permalink %>
     <% end %>
 
@@ -24,13 +24,12 @@
 
     <%= form.field_container :tag_list do %>
       <%= form.label :tag_list, 'Tag List' %><br />
-      <%= form.text_field :tag_list %>
+      <%= form.text_field :tag_list, :class => 'fullwidth' %>
     <% end %>
 
     <% unless Rails.env.test? %>
       <script>
         $("#blog_entry_tag_list").select2({tags: <%= Spree::BlogEntry.tag_counts_on(:tags).map{|t| t.name }.to_json.html_safe %> });
-        $('.select2-container').css({width: '20em'})
       </script>
     <% end %>
 
@@ -49,9 +48,9 @@
       <%= form.text_field :published_at, :value => published_at, :class => 'datepicker' %>
     <% end %>
 
-    <%= form.field_container :author do %>
-      <%= form.label :author, 'Author' %><br />
-      <%= form.text_field :author %>
+    <%= form.field_container :author_id do %>
+      <%= form.label :author_id, 'Author' %><br />
+      <%= form.select :author_id, Spree.user_class.joins(:spree_roles).where("#{Spree::Role.table_name}.name" => "blogger").collect {|u| [u.email, u.id]}, {:include_blank => true}, :class => 'select2' %>
     <% end %>
 
     <%= form.field_container :visible do %>

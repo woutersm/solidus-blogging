@@ -5,7 +5,7 @@
     <div class="blog_entry_details">
       <span class="blog_entry_date"><%= l(@blog_entry.published_at, :format => :blog_date) %></span>
       <% unless @blog_entry.author.blank? %>
-        <%= t(:by) %> <span class="blog_entry_author"><%= @blog_entry.author %></span>
+        <%= t(:by) %> <span class="blog_entry_author"><%= @blog_entry.author.nickname %></span>
       <% end %>
     </div>
 
@@ -23,4 +23,10 @@
 
 <% content_for :sidebar do %>
   <%= render :partial => 'spree/blog_entries/sidebar_show' %>
+<% end %>
+
+<% content_for :head do %>
+  <% if !@blog_entry.author.blank? and !@blog_entry.author.google_plus_url.blank? %>
+    <link rel="author" href="<%= @blog_entry.author.google_plus_url %>"/>
+  <% end %>
 <% end %>

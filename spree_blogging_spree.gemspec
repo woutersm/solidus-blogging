@@ -4,7 +4,7 @@ Gem::Specification.new do |s|
   s.name        = 'spree_blogging_spree'
   s.version     = '0.3.0'
   s.summary     = 'BloggingSpree: A Spree blogging solution'
-  #s.description = 'TODO: Add (optional) gem description here'
+  s.description = 'A basic blogging solution for use with the Spree E-Commerce platform.'
   s.required_ruby_version = '>= 1.8.7'
 
   s.author    = 'Paul Callaghan, Ray Mendoza, Stefan Senk'
