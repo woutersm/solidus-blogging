@@ -15,21 +15,20 @@
       <%= form.error_message_on :permalink %>
     <% end %>
 
-    <p>
-      <%= form.fields_for :blog_entry_image do |blog_entry_image_fields| %>
-        <%= blog_entry_image_fields.label :attachment, t(:blogs_main_image) %><br/>
-        <%= blog_entry_image_fields.file_field :attachment %>
-      <% end %>
-    </p>
+    <%= form.field_container :category_list do %>
+      <%= form.label :category_list, t(:category_list)  %><br />
+      <%= form.text_field :category_list, :class => 'fullwidth' %>
+    <% end %>
 
     <%= form.field_container :tag_list do %>
-      <%= form.label :tag_list, 'Tag List' %><br />
+      <%= form.label :tag_list, t(:tag_list) %><br />
       <%= form.text_field :tag_list, :class => 'fullwidth' %>
     <% end %>
 
     <% unless Rails.env.test? %>
       <script>
         $("#blog_entry_tag_list").select2({tags: <%= Spree::BlogEntry.tag_counts_on(:tags).map{|t| t.name }.to_json.html_safe %> });
+        $("#blog_entry_category_list").select2({tags: <%= Spree::BlogEntry.tag_counts_on(:categories).map{|t| t.name }.to_json.html_safe %> });
       </script>
     <% end %>
 
@@ -59,6 +58,12 @@
       <%= form.error_message_on :visible %>
     <% end %>
 
+    <p>
+      <%= form.fields_for :blog_entry_image do |blog_entry_image_fields| %>
+        <%= blog_entry_image_fields.label :attachment, t(:blogs_main_image) %><br/>
+        <%= blog_entry_image_fields.file_field :attachment %>
+      <% end %>
+    </p>
   </div>
 </div>
 

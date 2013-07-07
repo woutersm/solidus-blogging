@@ -8,6 +8,7 @@ describe "BlogEntries" do
       :summary => "Summary of the blog entry.",
       :published_at => DateTime.new(2010, 3, 11))
     @blog_entry.tag_list = "baz, bob"
+    @blog_entry.category_list = "cat1"
     @blog_entry.save!
 
     @blog_entry2 = create(:blog_entry, 
@@ -16,6 +17,7 @@ describe "BlogEntries" do
       :summary => "",
       :published_at => 1.day.ago)
     @blog_entry2.tag_list = "bob, ben"
+    @blog_entry2.category_list = "cat1, cat2"
     @blog_entry2.save!
 
     @blog_entry3 = create(:blog_entry, 
@@ -23,13 +25,28 @@ describe "BlogEntries" do
       :visible => false,
       :published_at => DateTime.new(2010, 3, 11))
     @blog_entry3.tag_list = "baz, bob, bill"
+    @blog_entry3.category_list = "cat3"
     @blog_entry3.save!
+  end
+
+  context "Categories List" do
+    before do
+      visit "/blog"
+      @widget = find('.blog_categories_list')
+    end
+    it "should display the categories" do
+      @widget.should have_content("cat1")
+      @widget.should have_content("cat2")
+    end
+    it "should not display categories for blog entries that are not visible" do
+      @widget.should_not have_content("cat3")
+    end
   end
 
   context "Tag Cloud" do
     before do
       visit "/blog"
-      @widget = find('.tag_cloud')
+      @widget = find('.blog_tag_cloud')
     end
     it "should display the tags" do
       @widget.should have_content("baz")

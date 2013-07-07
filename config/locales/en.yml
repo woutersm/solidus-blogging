@@ -11,8 +11,9 @@ en:
         permalink: Permalink
         published_at: Published at
         visible: Visible
-        tag_list: Tag list
         author_id: Author
+        tag_list: Tags
+        category_list: Categories
       spree/user:
         nickname: Nickname
         website_url: Website URL
@@ -24,31 +25,21 @@ en:
   permalink: Permalink
   published_at: Published at
   visible: Visible
-  tag_list: Tag list
   author_id: Author
+  tag_list: Tags
+  category_list: Categories
   nickname: Nickname
   website_url: Website URL
   google_plus_url: Google Plus URL
   bio_info: Biographical info
-
   blog: "Blog"
   blog_entries: "Blog Entries"
   new_blog_entry: "New Blog Entry"
   no_blog_entries: "No blog entries found."
-  blog_management: "Blog Management" 
-  blog_management_description: "Manage the blog"
-  are_you_sure_blog_entry: "Are you sure you want to delete this blog entry?"
-  back_to_blog_entries: "Back to blog entries" 
-  back_to_the_blog: "Back to the blog"
-  terms_and_conditions: "Terms and Conditions"
-  submission_guidelines: "Submission Guidelines"
-  read_the_blog: "Read the blog"
-  new_entry: "New Entry"
-  tag_list_example: "(e.g. tag one, tag two, tag three)"
-  tags: Tags
-  blog_form_error_message: The following errors prohibited this form from being saved
   blogs_main_image: Main image
-
+  posted_on: Posted on
+  posted_in: Posted in
+  tagged: Tagged
   by: by
   blog_read_more: Read more
 

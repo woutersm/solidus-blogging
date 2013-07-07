@@ -31,7 +31,8 @@ describe "Blog Entry" do
       within_row(1) { click_icon :edit }
       fill_in 'Title', with: 'New title'
       fill_in 'Body', with: 'New body'
-      fill_in 'Tag List', with: 'tag1, tag2'
+      fill_in 'Tags', with: 'tag1, tag2'
+      fill_in 'Categories', with: 'cat1, cat2'
       fill_in 'Summary', with: 'New summary'
       check 'Visible'
       fill_in 'Published at', with: '2013/2/1'
@@ -44,6 +45,7 @@ describe "Blog Entry" do
       page.should have_content("New summary")
       find_field('blog_entry_title').value.should == "New title"
       find_field('blog_entry_tag_list').value.should == "tag1, tag2"
+      find_field('blog_entry_category_list').value.should == "cat1, cat2"
       find_field('blog_entry_published_at').value.should == "2013/02/01"
       find_field('blog_entry_visible').value.should == "1"
       find_field('blog_entry_permalink').value.should == "some-permalink-path"
