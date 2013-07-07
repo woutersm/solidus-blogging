@@ -1,9 +1,9 @@
 <div id="blog_entry_container">
   <% if !@blog_entries.empty? %>
     <ul id="blog_entry_entries">
-      <% @blog_entries.each do |e| %>
+      <% @blog_entries.each do |blog_entry| %>
         <li>
-          <%= render :partial => 'spree/blog_entries/blog', :locals => {:e => e} %>
+          <%= render :partial => 'spree/blog_entries/blog_entry', :locals => {:blog_entry => blog_entry} %>
         </li>
       <% end %>
     </ul>

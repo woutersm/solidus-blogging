@@ -1,8 +1,8 @@
 require 'acts-as-taggable-on'
 
 class Spree::BlogEntry < ActiveRecord::Base
-  attr_accessible :title, :body, :tag_list, :visible, :published_at, :summary, :permalink, :author_id
-  acts_as_taggable
+  attr_accessible :title, :body, :tag_list, :visible, :published_at, :summary, :permalink, :author_id, :category_list
+  acts_as_taggable_on :tags, :categories
   before_save :create_permalink
   before_save :set_published_at
   validates_presence_of :title
@@ -40,8 +40,12 @@ class Spree::BlogEntry < ActiveRecord::Base
     where(:published_at => (time.send("beginning_of_#{period}")..time.send("end_of_#{period}")) )
   end 
 
-  def self.by_tag(name)
-    tagged_with(name)
+  def self.by_tag(tag_name)
+    tagged_with(tag_name, :on => :tags)
+  end
+
+  def self.by_category(category_name)
+    tagged_with(category_name, :on => :categories)
   end
 
   def self.by_author(author)
