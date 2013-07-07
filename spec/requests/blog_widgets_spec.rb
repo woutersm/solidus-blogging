@@ -6,7 +6,6 @@ describe "BlogEntries" do
       :title => "First blog entry", 
       :body => "Body of the blog entry.", 
       :summary => "Summary of the blog entry.",
-      :author => "Torony Polser",
       :published_at => DateTime.new(2010, 3, 11))
     @blog_entry.tag_list = "baz, bob"
     @blog_entry.save!

@@ -2,11 +2,14 @@ require 'spec_helper'
 
 describe "BlogEntries" do
   before(:each) do
+    @author = create(:user, :email => "me@example.com", :nickname => "Torony Polser", :google_plus_url => 'https://example.com/123/')
+    @author.spree_roles << Spree::Role.find_or_create_by_name('blogger')
+
     @blog_entry = create(:blog_entry, 
       :title => "First blog entry", 
       :body => "Body of the blog entry.", 
       :summary => "Summary of the blog entry.",
-      :author => "Torony Polser",
+      :author => @author,
       :published_at => DateTime.new(2020, 3, 11))
     @blog_entry.tag_list = "baz, bob"
     @blog_entry.save!
@@ -80,6 +83,10 @@ describe "BlogEntries" do
     it "should display the published_at date" do
       visit "/blog/2020/03/11/first-blog-entry"
       find('#content').should have_content("11 Mar 2020")
+    end    
+    it "should include google authorship" do
+      visit "/blog/2020/03/11/first-blog-entry"
+      page.should have_css("link[rel=\"author\"][href=\"https://example.com/123/\"]")
     end
   end
 

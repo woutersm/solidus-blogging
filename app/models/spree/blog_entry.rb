@@ -1,7 +1,7 @@
 require 'acts-as-taggable-on'
 
 class Spree::BlogEntry < ActiveRecord::Base
-  attr_accessible :title, :body, :tag_list, :visible, :published_at, :summary, :permalink, :author
+  attr_accessible :title, :body, :tag_list, :visible, :published_at, :summary, :permalink, :author_id
   acts_as_taggable
   before_save :create_permalink
   before_save :set_published_at
@@ -11,6 +11,12 @@ class Spree::BlogEntry < ActiveRecord::Base
   default_scope :order => "published_at DESC"
   scope :visible, where(:visible => true)
   scope :recent, lambda{|max=5| visible.limit(max) }
+
+  if Spree.user_class
+    belongs_to :author, :class_name => Spree.user_class.to_s
+  else
+    belongs_to :author
+  end
 
   has_one :blog_entry_image, :as => :viewable, :dependent => :destroy
   accepts_nested_attributes_for :blog_entry_image#, :reject_if => lambda { |image| image[:attachment].blank? }

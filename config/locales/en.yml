@@ -2,9 +2,39 @@
 # See https://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
 
 en:
+  activerecord:
+    attributes:
+      spree/blog_entry:
+        title: Title
+        body: Body
+        summary: Summary
+        permalink: Permalink
+        published_at: Published at
+        visible: Visible
+        tag_list: Tag list
+        author_id: Author
+      spree/user:
+        nickname: Nickname
+        website_url: Website URL
+        google_plus_url: Google Plus URL
+        bio_info: Biographical info
   spree:
+    title: Title
+    body: Body
+    summary: Summary
+    permalink: Permalink
+    published_at: Published at
+    visible: Visible
+    tag_list: Tag list
+    author_id: Author
+    nickname: Nickname
+    website_url: Website URL
+    google_plus_url: Google Plus URL
+    bio_info: Biographical info
+
     blog: "Blog"
     blog_entries: "Blog Entries"
+    new_blog_entry: "New Blog Entry"
     no_blog_entries: "No blog entries found."
     blog_management: "Blog Management" 
     blog_management_description: "Manage the blog"
@@ -20,11 +50,6 @@ en:
     blog_form_error_message: The following errors prohibited this form from being saved
     blogs_main_image: Main image
 
-    title: Title
-    permalink: Permalink
-    body: Body
-    visible: Visible
-    published_at: Published at
     by: by
     blog_read_more: Read more
 
