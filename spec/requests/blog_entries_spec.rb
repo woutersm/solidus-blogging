@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe "BlogEntries" do
   before(:each) do
-    @author = create(:user, :email => "me@example.com", :nickname => "Torony Polser", :google_plus_url => 'https://example.com/123/')
+    @author = create(:user, :email => "me@example.com", :nickname => "Torony Polser")
     @author.spree_roles << Spree::Role.find_or_create_by_name('blogger')
 
     @blog_entry = create(:blog_entry, 
@@ -84,7 +84,8 @@ describe "BlogEntries" do
       visit "/blog/2020/03/11/first-blog-entry"
       find('#content').should have_content("11 Mar 2020")
     end    
-    it "should include google authorship" do
+    it "should include google authorship" do    
+      @author.update_attribute(:google_plus_url, 'https://example.com/123/')
       visit "/blog/2020/03/11/first-blog-entry"
       page.should have_css("link[rel=\"author\"][href=\"https://example.com/123/\"]")
     end
@@ -129,6 +130,27 @@ describe "BlogEntries" do
     it "should not display invisible blog entries" do
       visit "/blog/2020"
       find('#content').should_not have_content("Invisible blog entry")
+    end
+  end
+
+  context "author page" do
+    it "should display the author's blog entries" do
+      visit "/blog/author/Torony%20Polser"
+      find('#content').should have_content("First blog entry")
+      find('#content').should have_content("Summary of the blog entry.")
+    end
+    it "should display the author's details" do
+      @author.update_attribute(:website_url, 'http://example.com/')
+      @author.update_attribute(:bio_info, 'The author summary.')
+      visit "/blog/author/Torony%20Polser"
+      find('#content').should have_content("Torony Polser")
+      find('#content').should have_content("example.com")
+      find('#content').should have_content("The author summary.")
+    end
+    it "should display another author's blog entries" do
+      visit "/blog/author/Torony%20Polser"
+      find('#content').should_not have_content("Another blog entry")
+      find('#content').should_not have_content("Another body")
     end
   end
 end

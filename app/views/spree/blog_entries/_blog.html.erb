@@ -3,7 +3,7 @@
 <div class="blog_entry_details">
   <span class="blog_entry_date"><%= l(e.published_at, :format => :blog_date) %></span>
   <% unless e.author.blank? %>
-    <%= Spree.t(:by) %> <span class="blog_entry_author"><%= e.author.nickname %></span>
+    <%= Spree.t(:by) %> <%= link_to e.author.nickname, blog_author_path(:author => e.author.nickname), class: "blog_entry_author" %>
   <% end %>
 </div>
 
