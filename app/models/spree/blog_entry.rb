@@ -44,6 +44,10 @@ class Spree::BlogEntry < ActiveRecord::Base
     tagged_with(name)
   end
 
+  def self.by_author(author)
+    where(:author_id => author)
+  end
+
   # data for news archive widget, only visible entries
   def self.organize_blog_entries
     Hash.new.tap do |entries|

@@ -33,6 +33,11 @@ class Spree::BlogEntriesController < Spree::StoreController
     render :layout => false
   end
 
+  def author
+    @author = Spree.user_class.where(:nickname => params[:author]).first
+    @blog_entries = Spree::BlogEntry.visible.by_author(@author).page(@pagination_page).per(@pagination_per_page)
+  end
+
   private
 
     def init_pagination

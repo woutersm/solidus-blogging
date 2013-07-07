@@ -1,17 +1,5 @@
-<div id="blog_entry_container">
-  <% if !@blog_entries.empty? %>
-    <ul id="blog_entry_entries">
-      <% @blog_entries.each do |e| %>
-        <li>
-          <%= render :partial => 'spree/blog_entries/blog', :locals => {:e => e} %>
-        </li>
-      <% end %>
-    </ul>
-    <%= paginate @blog_entries %>
-  <% else %>
-    <p id="no_entries"><%= t('no_blog_entries') %></p>
-  <% end %>
-</div>  
+
+<%= render :partial => 'spree/blog_entries/blog_entries' %>
 
 <% content_for :sidebar do %>
   <%= render :partial => 'spree/blog_entries/sidebar_index' %>
