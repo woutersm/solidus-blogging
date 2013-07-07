@@ -104,6 +104,7 @@ describe "BlogEntries" do
   context "tag page" do
     it "should display the blog entries" do
       visit "/blog/tag/bob"
+      find('#content').should have_content("Tag: bob")
       find('#content').should have_content("First blog entry")
       find('#content').should have_content("Summary of the blog entry.")
       find('#content').should have_content("Another blog entry")
@@ -115,6 +116,10 @@ describe "BlogEntries" do
       find('#content').should have_content("Summary of the blog entry.")
       find('#content').should_not have_content("Another blog entry")
       find('#content').should_not have_content("Another body")
+    end
+    it "should display the tag title" do
+      visit "/blog/tag/bob"
+      find('#content').should have_content("Tag: bob")
     end
     it "should not display invisible blog entries" do
       visit "/blog/tag/bob"
@@ -136,6 +141,14 @@ describe "BlogEntries" do
       find('#content').should_not have_content("Summary of the blog entry.")
       find('#content').should have_content("Another blog entry")
       find('#content').should have_content("Another body")
+    end
+    it "should display the archive year" do
+      visit "/blog/2020"
+      find('#content').should have_content("Archive: 2020")
+    end
+    it "should display the archive month and year" do
+      visit "/blog/2020/02"
+      find('#content').should have_content("Archive: February 2020")
     end
     it "should not display invisible blog entries" do
       visit "/blog/2020"
@@ -176,6 +189,10 @@ describe "BlogEntries" do
       visit "/blog/category/cat2"
       find('#content').should_not have_content("First blog entry")
       find('#content').should have_content("Another blog entry")
+    end
+    it "should display the category title" do
+      visit "/blog/category/cat1"
+      find('#content').should have_content("Category: cat1")
     end
     it "should not display invisible blog entries" do
       visit "/blog/category/cat3"

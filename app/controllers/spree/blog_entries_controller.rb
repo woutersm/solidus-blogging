@@ -19,19 +19,16 @@ class Spree::BlogEntriesController < Spree::StoreController
 
   def tag
     @blog_entries = Spree::BlogEntry.visible.by_tag(params[:tag]).page(@pagination_page).per(@pagination_per_page)
-    @tag_name = params[:tag] if @blog_entries.any?
-    render :action => :index
+    @tag_name = params[:tag]
   end
 
   def category
     @blog_entries = Spree::BlogEntry.visible.by_category(params[:category]).page(@pagination_page).per(@pagination_per_page)
-    @category_name = params[:category] if @blog_entries.any?
-    render :action => :index
+    @category_name = params[:category]
   end
 
   def archive
     @blog_entries = Spree::BlogEntry.visible.by_date(params).page(@pagination_page).per(@pagination_per_page)
-    render :action => :index
   end
   
   def feed
