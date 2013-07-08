@@ -61,5 +61,22 @@ describe "Blog Entry" do
       page.should have_content("me@example.com")
       find_field('blog_entry_author_id').value.should == user.id.to_s
     end
+
+    it "should add a featured image to a blog entry" do
+      file_path = Rails.root + "../../spec/support/image.png"
+
+      within_row(1) { click_icon :edit }
+      attach_file('blog_entry_blog_entry_image_attributes_attachment', file_path)
+      click_button "Update"
+      page.should have_content("successfully updated")
+      page.should have_content("image.png")
+
+      fill_in 'blog_entry_blog_entry_image_attributes_alt', :with => "image alt text"
+      click_button "Update"
+      page.should have_content("successfully updated")
+      find_field('Alternative Text').value.should == "image alt text"
+      page.should have_content("image.png") 
+    end
+
   end
 end
