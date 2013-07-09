@@ -1,7 +1,7 @@
 SpreeBloggingSpree
 ==================
 
-[![Build Status](https://travis-ci.org/stefansenk/spree-blogging-spree.png?branch=master)](https://travis-ci.org/stefansenk/spree-blogging-spree)
+[![Build Status](https://travis-ci.org/stefansenk/spree-blogging-spree.png?branch=2-0-stable)](https://travis-ci.org/stefansenk/spree-blogging-spree)
 
 A basic blogging solution for use with the [Spree](http://github.com/spree/spree/) E-Commerce platform.
 
@@ -22,7 +22,7 @@ Screenshot
 
 This screenshot shows some example blog entries with the widgets in the left sidebar:
 
-![Screenshot](https://raw.github.com/stefansenk/spree-blogging-spree/1-3-stable/screenshot.png)
+![Screenshot](https://raw.github.com/stefansenk/spree-blogging-spree/2-0-stable/screenshot.png)
 
 
 Installation
