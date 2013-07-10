@@ -15,12 +15,12 @@
     <% end %>
 
     <%= form.field_container :category_list do %>
-      <%= form.label :category_list, t(:category_list)  %><br />
+      <%= form.label :category_list, Spree.t(:category_list)  %><br />
       <%= form.text_field :category_list, :class => 'fullwidth' %>
     <% end %>
 
     <%= form.field_container :tag_list do %>
-      <%= form.label :tag_list, t(:tag_list) %><br />
+      <%= form.label :tag_list, Spree.t(:tag_list) %><br />
       <%= form.text_field :tag_list, :class => 'fullwidth' %>
     <% end %>
 
@@ -34,10 +34,10 @@
 
     <div class="columns five alpha">
       <%= form.field_container :published_at do %>
-        <%= form.label :published_at, t(:published_at) %><br />
+        <%= form.label :published_at, Spree.t(:published_at) %><br />
         <%= form.error_message_on :published_at %>
         <% if @blog_entry.published_at? %>
-          <% published_at = l(@blog_entry.published_at, :format => t('spree.date_picker.format')) %>
+          <% published_at = l(@blog_entry.published_at, :format => Spree.t('date_picker.format')) %>
         <% else %>
           <% published_at = nil %>
         <% end %>
@@ -47,7 +47,7 @@
 
     <div class="columns five omega">
       <%= form.field_container :visible do %>
-        <%= form.label :visible, t(:visible) %><br />
+        <%= form.label :visible, Spree.t(:visible) %><br />
         <%= form.check_box :visible %>
         <%= form.error_message_on :visible %>
       <% end %>
@@ -58,11 +58,11 @@
   <div class="omega six columns">
 
     <%= form.field_container :author_id do %>
-      <%= form.label :author_id, 'Author' %><br />
+      <%= form.label :author_id, Spree.t(:author_id) %><br />
       <%= form.select :author_id, Spree.user_class.joins(:spree_roles).where("#{Spree::Role.table_name}.name" => "blogger").collect {|u| [u.email, u.id]}, {:include_blank => true}, :class => 'select2' %>
     <% end %>
 
-    <%= field_set_tag t(:blog_entry_featured_image) do %>
+    <%= field_set_tag Spree.t(:blog_entry_featured_image) do %>
       <% @blog_entry.build_blog_entry_image unless @blog_entry.blog_entry_image %>
 
       <%= form.fields_for :blog_entry_image do |blog_entry_image_field| %>
@@ -77,7 +77,7 @@
         <% end %>
 
         <%= form.field_container :blog_entry_image_alt do %>
-          <%= blog_entry_image_field.label :alt, t(:alt_text) %><br/>
+          <%= blog_entry_image_field.label :alt, Spree.t(:alt_text) %><br/>
           <%= blog_entry_image_field.text_field :alt %>
         <% end %>
       <% end %>

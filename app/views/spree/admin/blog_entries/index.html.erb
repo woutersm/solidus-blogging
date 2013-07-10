@@ -1,19 +1,19 @@
 <% content_for :page_actions do %>  
-  <li><%= button_link_to Spree.t("new_entry"), new_object_url, :icon => 'add' %></li>
+  <li><%= button_link_to Spree.t(:new_blog_entry), new_object_url, :icon => 'add' %></li>
 <% end %>
 
 <% content_for :page_title do %>
-   <%= Spree.t('blog_entries') %>
+   <%= Spree.t(:blog_entries) %>
 <% end %>
 
 <% if @blog_entries.any? %>
   <table class="index">
     <thead>
       <tr>
-        <th class="date"><%= Spree.t('published_at') %></th>
-        <th class="title"><%= Spree.t('title') %></th>
-        <th class=""><%= Spree.t('path') %></th>
-        <th class=""><%= Spree.t('visible') %></th>
+        <th class="date"><%= Spree.t(:published_at) %></th>
+        <th class="title"><%= Spree.t(:title) %></th>
+        <th class=""><%= Spree.t(:path) %></th>
+        <th class=""><%= Spree.t(:visible) %></th>
         <th class="actions"></th>
       </tr>
     </thead>
@@ -38,6 +38,6 @@
 
   <%= paginate @blog_entries %>
 <% else %>
-  <p><%= Spree.t('no_blog_entries') %></p>
+  <p><%= Spree.t(:no_blog_entries) %></p>
 <% end %>
 
