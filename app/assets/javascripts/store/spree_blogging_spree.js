@@ -1,4 +1,4 @@
-//= require store/spree_core
+//= require store/spree_frontend
 
 jQuery(function() {
   $('#news-archive')
