@@ -16,8 +16,9 @@ Gem::Specification.new do |s|
   s.require_path = 'lib'
   s.requirements << 'none'
 
-  s.add_dependency 'spree_core', '~> 2.1.0.beta'
-  s.add_dependency 'acts-as-taggable-on', '~> 2.3.1'
+  s.add_dependency 'spree_core', '~> 2.1.2'
+  s.add_dependency 'acts-as-taggable-on', '~> 2.4.1'
+  s.add_dependency 'protected_attributes'
 
   s.add_development_dependency 'capybara', '~> 1.1'
   s.add_development_dependency 'factory_girl', '~> 4.2'
