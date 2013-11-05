@@ -8,8 +8,8 @@ class Spree::BlogEntry < ActiveRecord::Base
   validates_presence_of :title
   validates_presence_of :body
 
-  default_scope :order => "published_at DESC"
-  scope :visible, where(:visible => true)
+  default_scope { order("published_at DESC") }
+  scope :visible, -> { where :visible => true }
   scope :recent, lambda{|max=5| visible.limit(max) }
 
   if Spree.user_class
