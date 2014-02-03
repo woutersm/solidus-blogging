@@ -1,3 +1,4 @@
+<h6><%= Spree.t('blog.archive') %></h6>
 <ul id="news-archive">
 <% news_archive.to_a.reverse.each do |year, months_with_entries| %>
   <% d = DateTime.parse("1/#{year}") %>

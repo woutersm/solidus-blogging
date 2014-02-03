@@ -47,6 +47,11 @@ en:
     blog_tag: Tag
     blog_category: Category
     blog_author: Author
+    blog:
+      categories: Categories
+      tags: Tag cloud
+      recent_entries: Recent entries
+      archive: Archive
   time:
     formats:
       blog_date: "%e %b %Y"

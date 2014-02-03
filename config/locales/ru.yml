@@ -50,6 +50,11 @@ ru:
     admin:
       tabs:
         blog_entries: Блог
+    blog:
+      categories: Категории
+      tags: Ключевые слова
+      recent_entries: Недавние записи
+      archive: Архив
   time:
     formats:
       blog_date: "%e %b %Y"
