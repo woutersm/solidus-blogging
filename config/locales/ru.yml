@@ -51,6 +51,7 @@ ru:
       tabs:
         blog_entries: Блог
     blog:
+      ago: назад
       categories: Категории
       tags: Ключевые слова
       recent_entries: Недавние записи
