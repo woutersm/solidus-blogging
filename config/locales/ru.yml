@@ -48,7 +48,7 @@ ru:
     blog_category: Категория
     blog_author: Автор
     admin:
-      tabs:
+      tab:
         blog_entries: Блог
     blog:
       ago: назад
