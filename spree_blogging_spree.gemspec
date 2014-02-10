@@ -5,7 +5,7 @@ Gem::Specification.new do |s|
   s.version     = '0.3.0'
   s.summary     = 'BloggingSpree: A Spree blogging solution'
   s.description = 'A basic blogging solution for use with the Spree E-Commerce platform.'
-  s.required_ruby_version = '>= 1.8.7'
+  s.required_ruby_version = '>= 1.9.3'
 
   s.author    = 'Paul Callaghan, Ray Mendoza, Stefan Senk'
   # s.email     = 'you@example.com'
@@ -17,16 +17,17 @@ Gem::Specification.new do |s|
   s.requirements << 'none'
 
   s.add_dependency 'spree_core', '~> 2.1.0.beta'
-  s.add_dependency 'acts-as-taggable-on', '~> 2.3.1'
+  s.add_dependency 'acts-as-taggable-on', '~> 2.4.1'
 
-  s.add_development_dependency 'capybara', '~> 1.1'
-  s.add_development_dependency 'factory_girl', '~> 4.2'
+  s.add_development_dependency 'capybara',         '~> 2.1'
+  s.add_development_dependency 'factory_girl',     '~> 4.2'
   s.add_development_dependency 'ffaker'
-  s.add_development_dependency 'rspec-rails',  '~> 2.13'
+  s.add_development_dependency 'rspec-rails',      '~> 2.13'
   s.add_development_dependency 'coffee-rails'
   s.add_development_dependency 'sass-rails'
-  s.add_development_dependency 'sqlite3'
+  s.add_development_dependency 'sqlite3',          '~> 1.3.8'
   s.add_development_dependency 'spork-rails'
   s.add_development_dependency 'launchy'
-  s.add_development_dependency 'database_cleaner'
+  s.add_development_dependency 'database_cleaner', '~> 1.0.1'
+
 end
