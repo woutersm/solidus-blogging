@@ -2,6 +2,10 @@ class Spree::BlogEntriesController < Spree::StoreController
   helper 'spree/blog_entries' 
 
   before_filter :init_pagination, :only => [:index, :tag, :archive, :author, :category]
+  before_filter :set_body_id
+  def set_body_id
+    @body_id = 'blog'
+  end
   rescue_from ActiveRecord::RecordNotFound, :with => :render_404
   
   def index
