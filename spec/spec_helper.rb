@@ -24,6 +24,7 @@ Spork.prefork do
     config.include FactoryGirl::Syntax::Methods
 
     config.include Spree::TestingSupport::UrlHelpers
+    config.include Capybara::DSL
 
     config.mock_with :rspec
 
