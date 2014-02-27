@@ -3,7 +3,7 @@ require 'spec_helper'
 describe "BlogEntries" do
   before(:each) do
     @author = create(:user, :email => "me@example.com", :nickname => "Torony Polser")
-    @author.spree_roles << Spree::Role.find_or_create_by_name('blogger')
+    @author.spree_roles << Spree::Role.find_or_create_by(name: 'blogger')
 
     @blog_entry = create(:blog_entry, 
       :title => "First blog entry", 
@@ -97,7 +97,7 @@ describe "BlogEntries" do
     it "should include google authorship" do    
       @author.update_attribute(:google_plus_url, 'https://example.com/123/')
       visit "/blog/2020/03/11/first-blog-entry"
-      page.should have_css("link[rel=\"author\"][href=\"https://example.com/123/\"]")
+      page.should have_css("link[rel='author'][href='https://example.com/123/']", visible: false)
     end
   end
 

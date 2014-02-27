@@ -67,11 +67,11 @@ class Spree::BlogEntry < ActiveRecord::Base
   private
 
   def self.years
-    visible.all.map {|e| e.published_at.year }.uniq
+    visible.map {|e| e.published_at.year }.uniq
   end
 
   def self.months_for(year)
-    visible.all.select {|e| e.published_at.year == year }.map {|e| e.published_at.month }.uniq
+    visible.select {|e| e.published_at.year == year }.map {|e| e.published_at.month }.uniq
   end
 
   def create_permalink

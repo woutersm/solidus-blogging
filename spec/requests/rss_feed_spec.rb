@@ -17,13 +17,13 @@ describe "RSS Feed" do
       find(:xpath, "//rss/channel/item/title").text.should == "First blog entry"
       find(:xpath, "//rss/channel/item/content").text.should include("Body of the blog entry.")
       find(:xpath, "//rss/channel/item/description").text.should include("Summary of the blog entry.")
-      find(:xpath, "//rss/channel/item/guid").text.should have_content("/blog/2020/03/11/first-blog-entry")
-      find(:xpath, "//rss/channel/item/pubdate").text.should have_content("11 Mar 2020")
+      find(:xpath, "//rss/channel/item/guid").text.should include("/blog/2020/03/11/first-blog-entry")
+      find(:xpath, "//rss/channel/item/pubdate").text.should include("11 Mar 2020")
       find(:xpath, "//rss/channel/item/category").text.should == "baz"
     end
 
     it "should include links back to the orginal page in content" do
-      visit "/blog/feed"
+      visit "/blog/feed.rss"
       find(:xpath, "//rss/channel/item/content").text.should include("first appeared on")
       find(:xpath, "//rss/channel/item/description").text.should include("Read the full article")
     end

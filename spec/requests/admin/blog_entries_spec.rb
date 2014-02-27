@@ -10,7 +10,7 @@ describe "Blog Entry" do
         :title => "First blog entry", 
         :body => "Body of the blog entry.", 
         :summary => "", 
-        :visible => false, 
+        :visible => true, 
         :published_at => DateTime.new(2010, 3, 11))
       click_link "Blog"
     end
@@ -23,7 +23,7 @@ describe "Blog Entry" do
         page.should have_content("11 Mar 2010")
       end
       it "should display blog visible" do
-        page.should have_css('img', :alt => "Cross")
+        page.should have_css('i.icon-ok.green')
       end
     end
 
@@ -53,7 +53,7 @@ describe "Blog Entry" do
 
     it "should add an author to a blog entry" do
       user = create(:user, :email => "me@example.com")
-      user.spree_roles << Spree::Role.find_or_create_by_name('blogger')
+      user.spree_roles << Spree::Role.find_or_create_by(name: 'blogger')
       within_row(1) { click_icon :edit }
       select "me@example.com", :from => 'Author'
       click_on 'Update'

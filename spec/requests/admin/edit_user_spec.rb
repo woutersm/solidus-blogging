@@ -3,7 +3,7 @@ require 'spec_helper'
 describe "User" do
   context "as admin user" do
     before(:each) do
-      Spree::Role.find_or_create_by_name('blogger')
+      Spree::Role.find_or_create_by(name: 'blogger')
       sign_in_as!(create(:admin_user))
       visit spree.admin_path
       click_link "Users"
