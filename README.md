@@ -30,24 +30,35 @@ Installation
 
 Add to your Gemfile:
 
-    gem 'spree_blogging_spree', :github => 'stefansenk/spree-blogging-spree'
+```ruby
+gem 'spree_blogging_spree', github: 'stefansenk/spree-blogging-spree'
+```
 
-Run:
+Bundle your dependencies and run the installation generator:
 
-    $ bundle install
-    $ rake railties:install:migrations
-    $ rake db:migrate
-
+```shell
+    bundle install
+    rake railties:install:migrations
+    rake db:migrate
+```
 
 Testing
 -------
 
 Be sure to bundle your dependencies and then create a dummy test app for the specs to run against.
 
-    $ bundle
-    $ bundle exec rake test_app
-    $ bundle exec rspec spec
+```shell
+bundle
+bundle exec rake test_app
+bundle exec rspec spec
+```
 
+When testing your applications integration with this extension you may use it's factories.
+Simply add this require statement to your spec_helper:
+
+```ruby
+require 'spree_blogging_spree/factories'
+```
 
 TODO
 ----
@@ -65,4 +76,4 @@ Some additional features could include:
 - Add Facebook Open Graph meta tags.
 
 
-Copyright (c) 2013 Stefan Senk, released under the New BSD License
+Copyright (c) 2014 Stefan Senk, released under the New BSD License
