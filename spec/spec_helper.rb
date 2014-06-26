@@ -70,7 +70,7 @@ RSpec.configure do |config|
 
   # Before each spec check if it is a Javascript test and switch between using database transactions or not where necessary.
   config.before :each do
-    DatabaseCleaner.strategy = example.metadata[:js] ? :truncation : :transaction
+    DatabaseCleaner.strategy = RSpec.current_example.metadata[:js] ? :truncation : :transaction
     DatabaseCleaner.start
   end
 
@@ -85,5 +85,6 @@ RSpec.configure do |config|
   config.include Capybara::DSL, :type => :request
 
   config.filter_run :focus => true
+  config.infer_spec_type_from_file_location!
   config.run_all_when_everything_filtered = true
 end
