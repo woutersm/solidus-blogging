@@ -114,7 +114,7 @@ describe Spree::BlogEntry do
 
   context "with a BlogEntry created late in the day on 2/28/2010" do
     before do
-      @entry = create(:blog_entry, :published_at => Time.parse('2010-02-28 21:00:00'))
+      @entry = create(:blog_entry, :published_at => Time.zone.parse('2010-02-28 21:00:00'))
     end
 
     it "should retrieve given entry when queried for February entries" do
