@@ -13,7 +13,7 @@ The author is an instance of `Spree.user_class`, typically a `Spree::User`. The 
 
 There is no commenting system yet. One option for adding comments is to override the `spree/blog_entries/comments` partial and include and external commenting system, such as [Disqus](http://disqus.com/).
 
-Admin users can preview blog entries before they've made visible.
+Admin users can preview blog entries before they're made publicly visible.
 
 This fork differs significantly from the original, it started out as a newly generated extension for Spree 1.2 with the logic copied over and tests moved to RSpec.
 
@@ -68,7 +68,6 @@ Some additional features could include:
 - Allow searching for blog entries within the admin.
 - Allow searching for blog entries from the shop front end.
 - Get default per page from preferences.
-- Allow routes other than /blog.
 - Allow images to be uploaded and inserted. Currently, images (other than the featured image) must be uploaded via other means.
 - Add comments (including mechanisms for dealing with spam).
 - Add abilities for the 'blogger' role, so a blogger can only manage their own blog entries within the admin.
