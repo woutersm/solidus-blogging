@@ -2,7 +2,6 @@ Spree::Core::Engine.routes.draw do
   namespace :admin do
     resources :blog_entries
   end
-  resources :blog_entries, path: Spree::Config['blog_alias']
 
   scope Spree::Config['blog_alias'], as: 'blog' do
     get '/tag/:tag' => 'blog_entries#tag', :as => :tag
