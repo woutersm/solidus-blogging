@@ -30,7 +30,7 @@ Installation
 
 Add to your Gemfile:
 
-    gem 'spree_blogging_spree', :github => 'stefansenk/spree-blogging-spree'
+    gem 'spree_blogging_spree', :github => 'stefansenk/spree-blogging-spree', :branch => '2-1-stable'
 
 Run:
 
