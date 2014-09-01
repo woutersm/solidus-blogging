@@ -1,5 +1,7 @@
-<%= render :partial => 'spree/blog_entries/blog_entries' %>
+<div class="row">
+  <aside id="sidebar" class="columns four" data-hook>
+    <%= render :partial => 'spree/blog_entries/sidebar_index' %>
+  </aside>
 
-<% content_for :sidebar do %>
-  <%= render :partial => 'spree/blog_entries/sidebar_index' %>
-<% end %>
+  <%= render :partial => 'spree/blog_entries/blog_entries' %>
+</div>
