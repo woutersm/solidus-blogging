@@ -1,3 +1,13 @@
+<% content_for :head do %>
+  <% if !@blog_entry.author.blank? and !@blog_entry.author.google_plus_url.blank? %>
+    <link rel="author" href="<%= @blog_entry.author.google_plus_url %>"/>
+  <% end %>
+<% end %>
+
+<% content_for :sidebar do %>
+  <%= render :partial => 'spree/blog_entries/blog_sidebar' %>
+<% end %>
+
 <div id="blog_entry_container">
   <div id="blog_entry_entry">
 
@@ -11,14 +21,4 @@
   </div>
 
   <%= render :partial => 'spree/blog_entries/comments', :locals => {:blog_entry => @blog_entry}  %>
-</div> 
-
-<% content_for :sidebar do %>
-  <%= render :partial => 'spree/blog_entries/sidebar_show' %>
-<% end %>
-
-<% content_for :head do %>
-  <% if !@blog_entry.author.blank? and !@blog_entry.author.google_plus_url.blank? %>
-    <link rel="author" href="<%= @blog_entry.author.google_plus_url %>"/>
-  <% end %>
-<% end %>
+</div>
