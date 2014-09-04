@@ -5,12 +5,12 @@ describe "Blog Entry" do
     before(:each) do
       sign_in_as!(create(:admin_user))
       visit spree.admin_path
-      
-      @blog_entry = create(:blog_entry, 
-        :title => "First blog entry", 
-        :body => "Body of the blog entry.", 
-        :summary => "", 
-        :visible => true, 
+
+      @blog_entry = create(:blog_entry,
+        :title => "First blog entry",
+        :body => "Body of the blog entry.",
+        :summary => "",
+        :visible => true,
         :published_at => DateTime.new(2010, 3, 11))
       click_link "Blog"
     end
@@ -23,7 +23,7 @@ describe "Blog Entry" do
         page.should have_content("11 Mar 2010")
       end
       it "should display blog visible" do
-        page.should have_css('i.icon-ok.green')
+        page.should have_css('i.fa.fa-ok.green')
       end
     end
 
@@ -39,8 +39,8 @@ describe "Blog Entry" do
       fill_in 'Permalink', with: 'some-permalink-path'
       click_on 'Update'
 
-      page.should have_content("Blog entry has been successfully updated")
-      
+      page.should have_content("Blog Entry has been successfully updated")
+
       page.should have_content("New body")
       page.should have_content("New summary")
       find_field('blog_entry_title').value.should == "New title"
@@ -57,7 +57,7 @@ describe "Blog Entry" do
       within_row(1) { click_icon :edit }
       select "me@example.com", :from => 'Author'
       click_on 'Update'
-      page.should have_content("Blog entry has been successfully updated")
+      page.should have_content("Blog Entry has been successfully updated")
       page.should have_content("me@example.com")
       find_field('blog_entry_author_id').value.should == user.id.to_s
     end
@@ -75,7 +75,7 @@ describe "Blog Entry" do
       click_button "Update"
       page.should have_content("successfully updated")
       find_field('Alternative Text').value.should == "image alt text"
-      page.should have_content("image.png") 
+      page.should have_content("image.png")
     end
 
   end
