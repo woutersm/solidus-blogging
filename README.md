@@ -1,9 +1,9 @@
 SolidusBlogging
 ==================
 
-[![Build Status](https://travis-ci.org/stefansenk/spree-blogging-spree.png?branch=master)](https://travis-ci.org/stefansenk/spree-blogging-spree)
+[![Build Status](https://travis-ci.org/solidusio-contrib/solidus_blogging.svg)](https://travis-ci.org/solidusio-contrib/solidus_blogging)
 
-A basic blogging solution for use with the [Spree](http://github.com/spree/spree/) E-Commerce platform.
+A basic blogging solution for use with the [Solidus](http://github.com/solidus/solidus/) E-Commerce platform.
 
 The blog is found under /blog on the website font end. Blog entries have fields for title, body, summary, date published, and author. Each blog entry can also have categories and tags associated with it.
 
@@ -31,7 +31,7 @@ Installation
 Add to your Gemfile:
 
 ```ruby
-gem 'spree_blogging_spree', github: 'stefansenk/spree-blogging-spree'
+gem 'solidus_blogging', github: 'digitalreflow/solidus-blogging'
 ```
 
 Bundle your dependencies and run the installation generator:
@@ -57,7 +57,7 @@ When testing your applications integration with this extension you may use it's 
 Simply add this require statement to your spec_helper:
 
 ```ruby
-require 'spree_blogging_spree/factories'
+require 'solidus_blogging/factories'
 ```
 
 TODO
@@ -75,4 +75,4 @@ Some additional features could include:
 - Add Facebook Open Graph meta tags.
 
 
-Copyright (c) 2014 Stefan Senk, released under the New BSD License
+Copyright (c) 2009-2014 [Spree Commerce][2] and [contributors][3], released under the [New BSD License][4]
