@@ -1,4 +1,4 @@
-class SpreeBloggingSpreeAbility
+class SolidusBloggingAbility
   include CanCan::Ability
 
   def initialize(user)

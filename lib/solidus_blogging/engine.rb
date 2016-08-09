@@ -1,4 +1,4 @@
-module SpreeBloggingSpree
+module SolidusBlogging
   class Engine < Rails::Engine
     require 'spree/core'
     isolate_namespace Spree

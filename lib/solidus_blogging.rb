@@ -1,0 +1,5 @@
+require 'solidus'
+require 'deface'
+require 'solidus_auth_devise'
+require 'solidus_blogging/engine'
+require 'solidus_blogging/solidus_blogging_ability'
