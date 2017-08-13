@@ -2,7 +2,7 @@
 Gem::Specification.new do |s|
   s.platform    = Gem::Platform::RUBY
   s.name        = 'solidus_blogging'
-  s.version     = '1.0.0'
+  s.version     = '1.0.1'
   s.summary     = 'BloggingSolidus: A Solidus blogging solution'
   s.description = 'A basic blogging solution for use with the Solidus E-Commerce platform.'
   s.required_ruby_version = '>= 1.9.3'
@@ -16,8 +16,8 @@ Gem::Specification.new do |s|
   s.require_path = 'lib'
   s.requirements << 'none'
 
-  s.add_dependency 'solidus', '> 1.0'
-  s.add_dependency 'deface', '~> 1.0.2'
+  s.add_dependency 'solidus', '~> 2.3'
+  s.add_dependency 'deface', '~> 1.2'
   s.add_dependency 'solidus_auth_devise', '~> 1.5'
   s.add_dependency 'acts-as-taggable-on', '4.0.0'
 
